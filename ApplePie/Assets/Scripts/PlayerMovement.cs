@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public int forceConst = 20;
     public bool isGrounded;
     private bool canJump;
+    public bool canMove;
     private Rigidbody selfRigidbody;
 
     private Vector2 movementInput;
@@ -38,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (canJump && isGrounded)
         {
+            
             canJump = false;
             selfRigidbody.AddForce(0, forceConst, 0,ForceMode.Impulse);
         }
@@ -45,7 +47,10 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnMoving(InputAction.CallbackContext ctx)
     {
-        movementInput = ctx.ReadValue<Vector2>();
+        if (canMove)
+        {
+            movementInput = ctx.ReadValue<Vector2>();
+        }
     }
     public void OnJump(InputAction.CallbackContext ctx)
     {
@@ -60,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "Ground")
         {
             isGrounded = true;
+            canMove = true;
         }
     }
 
@@ -68,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "Ground")
         {
             isGrounded = false;
+            canMove = false;
         }
     }
 
