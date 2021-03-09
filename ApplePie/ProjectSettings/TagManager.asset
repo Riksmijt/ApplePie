@@ -8,6 +8,7 @@ TagManager:
   - Archer
   - Tank
   - Ground
+  - Arm
   layers:
   - Default
   - TransparentFX

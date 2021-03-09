@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     //public float speed = 5;
+    public GameObject arm;
     public int forceConst = 20;
     public bool isGrounded;
     private bool canJump;
@@ -17,9 +18,9 @@ public class PlayerMovement : MonoBehaviour
 
 [SerializeField] private float speed = 5f;
 
-    // Start is called before the first frame update
     void Start()
     {
+        arm.SetActive(false);
         selfRigidbody = GetComponent<Rigidbody>();
     }
     public void OnPlayerJoined(InputAction.CallbackContext context)
@@ -27,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("works");
     }
   
-    // Update is called once per frame
     void CheckClass()
     {
 
@@ -58,6 +58,13 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Pressedsouth");
             canJump = true;
+        }
+    }
+    public void onPunching(InputAction.CallbackContext ctx)
+    {
+        if (Gamepad.current.buttonWest.isPressed)
+        {
+            arm.SetActive(true);
         }
     }
     void OnCollisionEnter(Collision other)
