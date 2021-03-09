@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     //public float speed = 5;
     public int forceConst = 20;
-
+    public bool isGrounded;
     private bool canJump;
     private Rigidbody selfRigidbody;
 
@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("works");
     }
+  
     // Update is called once per frame
     void CheckClass()
     {
@@ -35,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
 
-        if (canJump)
+        if (canJump && isGrounded)
         {
             canJump = false;
             selfRigidbody.AddForce(0, forceConst, 0,ForceMode.Impulse);
@@ -54,8 +55,23 @@ public class PlayerMovement : MonoBehaviour
             canJump = true;
         }
     }
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+        }
+    }
 
-   
+    void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            isGrounded = false;
+        }
+    }
+
+
 
 
 }
