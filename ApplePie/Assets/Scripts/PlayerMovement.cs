@@ -30,17 +30,23 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator RespawnPlayer(GameObject player)
     {
-        //Print the time of when the function is first called.
         player.SetActive(false);
 
-        //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(2);
 
-        //After we have waited 5 seconds print the time again.
-       
         player.transform.position = new Vector3(2, 2, 2);
         player.SetActive(true);
     }
+    IEnumerator Punch(GameObject arm)
+    {
+        arm.SetActive(true);
+        isPunching = true;
+        yield return new WaitForSeconds(1);
+
+        arm.SetActive(false);
+        isPunching = false;
+    }
+
 
     public void OnPlayerJoined(InputAction.CallbackContext context)
     {
@@ -81,9 +87,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void onPunching()
     {
-    
-            arm.SetActive(true);
-        isPunching = true;
+        StartCoroutine(Punch(arm));
     }
     void OnCollisionEnter(Collision other)
     {
