@@ -239,7 +239,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3859130692403514493}
         m_MethodName: OnJump
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -254,7 +254,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3859130692403514493}
         m_MethodName: onPunching
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -286,7 +286,7 @@ MonoBehaviour:
   forceConst: 50
   isGrounded: 0
   canMove: 0
-  speed: 8
+  speed: 9
 --- !u!54 &818101019
 Rigidbody:
   m_ObjectHideFlags: 0
