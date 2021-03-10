@@ -98,13 +98,14 @@ public class PlayerMovement : MonoBehaviour
         }
         if(other.gameObject.tag == "Bokser" && isPunching == true)
         {
-            other.gameObject.GetComponent<PlayerMovement>().health -= 1f;
-            if(other.gameObject.GetComponent<PlayerMovement>().health < 0f)
+            float playerHealth = other.gameObject.GetComponent<PlayerMovement>().health -= 1f;
+            
+            if(playerHealth < 0f)
             {
                 StartCoroutine(RespawnPlayer(other.gameObject));
-                other.gameObject.GetComponent<PlayerMovement>().health = 2f;
+                playerHealth = 2f;
             }
-            Debug.Log(other.gameObject.GetComponent<PlayerMovement>().health);
+            Debug.Log(playerHealth);
         }
     }
 
