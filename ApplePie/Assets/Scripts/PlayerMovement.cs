@@ -13,7 +13,10 @@ public class PlayerMovement : MonoBehaviour
     public bool canMove;
     private bool isPunching;
     private Rigidbody selfRigidbody;
+    float playerHealth;
 
+
+    private GameObject Enemy;
     private GameObject playerRotation;
 
     private Vector2 movementInput;
@@ -37,12 +40,14 @@ public class PlayerMovement : MonoBehaviour
 
         player.transform.position = new Vector3(2, 2, 2);
         player.SetActive(true);
+        
+        
     }
     IEnumerator Punch(GameObject arm)
     {
         arm.SetActive(true);
         isPunching = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
 
         arm.SetActive(false);
         isPunching = false;
@@ -60,7 +65,11 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-
+        if (playerHealth < 0f)
+        {
+            StartCoroutine(RespawnPlayer(Enemy.gameObject));
+            playerHealth = 2;
+        }
         Debug.Log(health);
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
         transform.Rotate(0, rotateInput.y * 3f, 0);
@@ -105,13 +114,9 @@ public class PlayerMovement : MonoBehaviour
         }
         if(other.gameObject.tag == "Bokser" && isPunching == true)
         {
-            float playerHealth = other.gameObject.GetComponent<PlayerMovement>().health -= 1f;
+            playerHealth = other.gameObject.GetComponent<PlayerMovement>().health -= 1f;
+            Enemy = other.gameObject;
             
-            if(playerHealth < 0f)
-            {
-                StartCoroutine(RespawnPlayer(other.gameObject));
-                playerHealth = 2f;
-            }
             Debug.Log(playerHealth);
         }
     }
