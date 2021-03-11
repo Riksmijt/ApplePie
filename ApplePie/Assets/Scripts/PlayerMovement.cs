@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     //public float speed = 5;
     public GameObject arm;
-    public int forceConst = 20;
+    public int forceConst = 60;
     public bool isGrounded;
     private bool canJump;
     public bool canMove;
@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
         {
-            movementInput = ctx.ReadValue<Vector2>();
+            movementInput = ctx.ReadValue<Vector2>() * 0.7f;
         }
     }
     
@@ -81,6 +81,8 @@ public class PlayerMovement : MonoBehaviour
         {
 
             selfRigidbody.AddForce(0, forceConst, 0, ForceMode.Impulse);
+            
+
             canJump = false;
 
         }
