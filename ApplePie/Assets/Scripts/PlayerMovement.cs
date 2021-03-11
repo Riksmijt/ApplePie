@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 movementInput;
     private Vector2 jumpInput;
+    private Vector2 rotateInput;
 
 [SerializeField] private float speed = 5f;
 [SerializeField] private float health = 2f;
@@ -62,8 +63,8 @@ public class PlayerMovement : MonoBehaviour
 
         Debug.Log(health);
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
+        transform.Rotate(0, rotateInput.y * 3f, 0);
 
-      
 
     }
     public void OnMoving(InputAction.CallbackContext ctx)
@@ -72,6 +73,10 @@ public class PlayerMovement : MonoBehaviour
         {
             movementInput = ctx.ReadValue<Vector2>() * 0.7f;
         }
+    }
+    public void OnRotate(InputAction.CallbackContext ctx)
+    {
+        rotateInput = ctx.ReadValue<Vector2>();
     }
     
     public void OnJump()
