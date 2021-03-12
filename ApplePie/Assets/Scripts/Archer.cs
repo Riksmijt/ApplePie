@@ -17,15 +17,13 @@ public class Archer : MonoBehaviour
     }
     IEnumerator ArrowShooting()
     {
-        arrow.SetActive(true);
         isShooting = true;
         GameObject newArrow = Instantiate(arrow,barrel.position,barrel.rotation);
         newArrow.GetComponent<Rigidbody>().AddForce(newArrow.transform.forward * arrowSpeed);
         Destroy(newArrow, 1.5f);
         yield return new WaitForSeconds(1.5f);
         isShooting = false;
-        arrow.SetActive(false);
-        arrow.transform.position = transform.localPosition + new Vector3(-0.3f,0,0);
+        //arrow.transform.position = transform.localPosition + new Vector3(-0.3f,0,0);
     }
     // Update is called once per frame
     void Update()

@@ -141,12 +141,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 070924d8f6068364ea7c2ddd3017d087,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 100.00004
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 070924d8f6068364ea7c2ddd3017d087,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 100.00004
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 070924d8f6068364ea7c2ddd3017d087,
         type: 3}
@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 0
-  m_MaxPlayerCount: -1
+  m_MaxPlayerCount: 2
   m_AllowJoining: 1
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:
@@ -912,8 +912,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701688188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 2.9999995, z: 6}
+  m_LocalPosition: {x: 11.29, y: 0, z: 0}
+  m_LocalScale: {x: 12.214249, y: 2.9999995, z: 6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2

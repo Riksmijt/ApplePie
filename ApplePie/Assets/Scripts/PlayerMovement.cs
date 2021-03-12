@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public bool canMove;
     private bool isPunching;
     private Rigidbody selfRigidbody;
-    float playerHealth;
+    public static float playerHealth;
 
 
     private GameObject Enemy;
@@ -112,13 +112,14 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             canMove = true;
         }
-        if(other.gameObject.tag == "Bokser" && isPunching == true)
+        if(other.gameObject.tag == "Bokser" || other.gameObject.tag == "Arrow" && isPunching == true )
         {
             playerHealth = other.gameObject.GetComponent<PlayerMovement>().health -= 1f;
             Enemy = other.gameObject;
             
             Debug.Log(playerHealth);
         }
+        
     }
 
     void OnCollisionExit(Collision other)

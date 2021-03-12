@@ -381,4 +381,4 @@ MonoBehaviour:
   arrow: {fileID: 5307736481311016397, guid: 196740438742e7841bdc4f3825dd04b6, type: 3}
   isShooting: 0
   barrel: {fileID: 1101020399}
-  arrowSpeed: 100
+  arrowSpeed: 2000
