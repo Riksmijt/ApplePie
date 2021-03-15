@@ -17,12 +17,12 @@ public class Archer : MonoBehaviour
         isShooting = true;
         yield return new WaitForSeconds(2);
         isShooting = false;
-<<<<<<< HEAD
+
         //arrow.transform.position = transform.localPosition + new Vector3(-0.3f,0,0);
-=======
+
         arrow.SetActive(false);
         arrow.transform.position = transform.localPosition;
->>>>>>> parent of 3cd3bdf (Adds smooth shooting with addforce)
+
     }
     // Update is called once per frame
     void Update()
