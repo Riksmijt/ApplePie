@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Archer.cs" />
     <Compile Include="Assets\Scripts\Arrow.cs" />
+    <Compile Include="Assets\Scripts\Bokser.cs" />
     <Compile Include="Assets\Scripts\Manager.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
