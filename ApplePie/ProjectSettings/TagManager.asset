@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - Arm
   - Arrow
+  - Bokser_Ab1
   layers:
   - Default
   - TransparentFX
