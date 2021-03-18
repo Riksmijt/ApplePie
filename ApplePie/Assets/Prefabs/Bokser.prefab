@@ -514,6 +514,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0b222c02-6020-4ca2-852d-8f94afd0fda6
     m_ActionName: Player/Ab_1[/XInputControllerWindows/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -692425444956378259}
+        m_MethodName: AbbilitieTwo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a16adcc7-ef75-465f-acf1-0b1d566e169d
+    m_ActionName: Player/Ab_2[/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -565,6 +580,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e412ab39e11d24d86347c6c01453a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDownTime: 0
   ab1: {fileID: 376979595}
   ab2: {fileID: 470880375}

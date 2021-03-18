@@ -53,7 +53,7 @@ public class Bokser : MonoBehaviour
             ab1.SetActive(false);
             coolDownTimeAb1 = 0;
         }
-        if(canStartAb1 >= 8)
+        if(canStartAb1 >= 15)
         {
             isDoingAb1 = false;
             canStartAb1 = 0;
@@ -70,7 +70,7 @@ public class Bokser : MonoBehaviour
             ab2.SetActive(false);
             coolDownTimeAb2 = 0;
         }
-        if (canStartAb1 >= 8)
+        if (canStartAb2 >= 10)
         {
             isDoingAb2 = false;
             canStartAb2 = 0;

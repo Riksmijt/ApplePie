@@ -65,10 +65,10 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (playerHealth < 0f)
+        if (health < 0f)
         {
             StartCoroutine(RespawnPlayer(Enemy.gameObject));
-            playerHealth = 2;
+            health = 2;
         }
         Debug.Log(health);
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
