@@ -5,28 +5,31 @@ using UnityEngine.InputSystem;
 
 public class Bokser : MonoBehaviour
 {
-    public float coolDownTime = 0;
+    private float coolDownTimeAb1 = 0;
+    private float coolDownTimeAb2 = 0;
+    private float canStartAb1 = 0;
+    private float canStartAb2 = 0;
 
     public GameObject ab1;
     public GameObject ab2;
 
     private bool ab1Active;
-    private bool isDoingAb1 = false;
-    private bool isDoingAb2 = false;
+    private bool isDoingAb1;
+    private bool isDoingAb2;
  
     // Start is called before the first frame update
     void Start()
     {
         ab1.SetActive(false);
         ab2.SetActive(false);
-        isDoingAb1 = true;
-        isDoingAb2 = true;
+        isDoingAb1 = false;
+        isDoingAb2 = false;
     }
     IEnumerator StartAb(GameObject ab, bool whatAb)
     {
         whatAb = true;
         yield return new WaitForSeconds(3);
-        ab.SetActive(false);
+        
         whatAb = false;
     }
     IEnumerator AccesAb()
@@ -39,14 +42,46 @@ public class Bokser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isDoingAb1)
+        {
+            coolDownTimeAb1 += 1 * Time.deltaTime;
+            canStartAb1 += 1 * Time.deltaTime;
+        }
+        if(coolDownTimeAb1 >= 3)
+        {
+ 
+            ab1.SetActive(false);
+            coolDownTimeAb1 = 0;
+        }
+        if(canStartAb1 >= 8)
+        {
+            isDoingAb1 = false;
+            canStartAb1 = 0;
+        }
+
+        if (isDoingAb2)
+        {
+            coolDownTimeAb2 += 1 * Time.deltaTime;
+            canStartAb2 += 1 * Time.deltaTime;
+        }
+        if (coolDownTimeAb2 >= 3)
+        {
+
+            ab2.SetActive(false);
+            coolDownTimeAb2 = 0;
+        }
+        if (canStartAb1 >= 8)
+        {
+            isDoingAb2 = false;
+            canStartAb2 = 0;
+        }
     }
     public void AbilityOne()
     {
         if (!isDoingAb1)
         {
             ab1.SetActive(true);
-            StartCoroutine(StartAb(ab1,isDoingAb1));
+            isDoingAb1 = true;
         }
     }
     public void AbbilitieTwo()
@@ -54,7 +89,7 @@ public class Bokser : MonoBehaviour
         if (!isDoingAb2)
         {
             ab2.SetActive(true);
-            StartCoroutine(StartAb(ab2, isDoingAb2));
+            isDoingAb2 = true;
         }
     }
 }

@@ -15,4 +15,11 @@ public class BokserAb2 : MonoBehaviour
     {
         
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag == "Bokser")
+        {
+            collision.transform.GetComponent<Rigidbody>().AddForce(Vector3.back * 100);
+        }
+    }
 }
