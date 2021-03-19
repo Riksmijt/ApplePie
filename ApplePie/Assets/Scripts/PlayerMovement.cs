@@ -39,27 +39,6 @@ public class PlayerMovement : MonoBehaviour
         arm.SetActive(false);
         selfRigidbody = GetComponent<Rigidbody>();
     }
-    /*IEnumerator RespawnPlayer(GameObject player)
-    {
-        player.SetActive(false);
-
-        yield return new WaitForSeconds(2);
-
-        player.transform.position = new Vector3(2, 2, 2);
-        player.SetActive(true);
-        isSpawned = true;
-
-    }*/
-    /*IEnumerator Punch(GameObject arm)
-    {
-        arm.SetActive(true);
-        isPunching = true;
-        yield return new WaitForSeconds(0.5f);
-
-        arm.SetActive(false);
-        isPunching = false;
-    }*/
-
 
     public void OnPlayerJoined(InputAction.CallbackContext context)
     {
@@ -74,13 +53,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerHealth < 0f)
         {
-            Enemy.SetActive(false);
+            Enemy.GetComponent<MeshRenderer>().enabled = false;
             timer += 1 * Time.deltaTime;
            // StartCoroutine(RespawnPlayer(Enemy.gameObject));
         }
        if(timer >= 3f)
         {
-            Enemy.SetActive(true);
+            Enemy.GetComponent<MeshRenderer>().enabled = true;
             Enemy.transform.position = new Vector3(2, 2, 2);
             timer = 0;
             playerHealth = 2;
@@ -143,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             canMove = true;
         }
-        if(other.gameObject.tag == "Bokser" || other.gameObject.tag == "Arrow" && isPunching == true )
+        if(other.gameObject.tag == "Bokser" && isPunching == true )
         {
             //playerHealth = other.gameObject.GetComponent<PlayerMovement>().health -= 1f;
             playerHealth -= 1;
