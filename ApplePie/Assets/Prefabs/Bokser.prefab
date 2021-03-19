@@ -468,7 +468,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3859130692403514493}
-        m_MethodName: onPunching
+        m_MethodName: OnPunching
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -546,10 +546,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a61d02316fe05e46ba30b2a5d293872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arm: {fileID: 1812706736}
-  forceConst: 50
   isGrounded: 0
   canMove: 0
+  arm: {fileID: 1812706736}
   speed: 9
   health: 2
 --- !u!54 &818101019

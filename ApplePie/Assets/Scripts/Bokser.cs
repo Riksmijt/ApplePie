@@ -25,21 +25,7 @@ public class Bokser : MonoBehaviour
         isDoingAb1 = false;
         isDoingAb2 = false;
     }
-    IEnumerator StartAb(GameObject ab, bool whatAb)
-    {
-        whatAb = true;
-        yield return new WaitForSeconds(3);
-        
-        whatAb = false;
-    }
-    IEnumerator AccesAb()
-    {
-        ab1Active = true;
-        yield return new WaitForSeconds(10);
-        ab1Active = false;
-    }
-    
-    // Update is called once per frame
+
     void Update()
     {
         if (isDoingAb1)

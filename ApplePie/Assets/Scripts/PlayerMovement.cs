@@ -5,17 +5,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //public float speed = 5;
-    public GameObject arm;
-    public int forceConst = 60;
+    private int forceConst = 60;
+    private float timer;
+    private float punchCounter;
+
     public bool isGrounded;
     private bool canJump;
     public bool canMove;
     private bool isPunching;
+
     private Rigidbody selfRigidbody;
+
     public static float playerHealth;
+    public static bool isSpawned;
 
-
+    public GameObject arm;
     private GameObject Enemy;
     private GameObject playerRotation;
 
@@ -28,11 +32,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        punchCounter = 0;
+        timer = 0;
+        isSpawned = false;
         playerRotation = GameObject.FindGameObjectWithTag("Bokser");
         arm.SetActive(false);
         selfRigidbody = GetComponent<Rigidbody>();
     }
-    IEnumerator RespawnPlayer(GameObject player)
+    /*IEnumerator RespawnPlayer(GameObject player)
     {
         player.SetActive(false);
 
@@ -40,10 +47,10 @@ public class PlayerMovement : MonoBehaviour
 
         player.transform.position = new Vector3(2, 2, 2);
         player.SetActive(true);
-        
-        
-    }
-    IEnumerator Punch(GameObject arm)
+        isSpawned = true;
+
+    }*/
+    /*IEnumerator Punch(GameObject arm)
     {
         arm.SetActive(true);
         isPunching = true;
@@ -51,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
         arm.SetActive(false);
         isPunching = false;
-    }
+    }*/
 
 
     public void OnPlayerJoined(InputAction.CallbackContext context)
@@ -65,15 +72,34 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (health < 0f)
+        if (playerHealth < 0f)
         {
-            StartCoroutine(RespawnPlayer(Enemy.gameObject));
-            health = 2;
+            Enemy.SetActive(false);
+            timer += 1 * Time.deltaTime;
+           // StartCoroutine(RespawnPlayer(Enemy.gameObject));
         }
-        Debug.Log(health);
+       if(timer >= 3f)
+        {
+            Enemy.SetActive(true);
+            Enemy.transform.position = new Vector3(2, 2, 2);
+            timer = 0;
+            playerHealth = 2;
+        }
+        if (isPunching)
+        {
+            punchCounter += 1 * Time.deltaTime;
+            if (punchCounter >= 2)
+            {
+                arm.SetActive(false);
+                isPunching = false;
+            }
+        }
+        
+ 
+        Debug.Log(playerHealth);
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
         transform.Rotate(0, rotateInput.y * 3f, 0);
-
+        Debug.Log(isPunching);
 
     }
     public void OnMoving(InputAction.CallbackContext ctx)
@@ -101,9 +127,14 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
-    public void onPunching()
+    public void OnPunching()
     {
-        StartCoroutine(Punch(arm));
+        if (!isPunching)
+        {
+            arm.SetActive(true);
+            isPunching = true;
+            punchCounter = 0;
+        }
     }
     void OnCollisionEnter(Collision other)
     {
@@ -114,10 +145,9 @@ public class PlayerMovement : MonoBehaviour
         }
         if(other.gameObject.tag == "Bokser" || other.gameObject.tag == "Arrow" && isPunching == true )
         {
-            playerHealth = other.gameObject.GetComponent<PlayerMovement>().health -= 1f;
+            //playerHealth = other.gameObject.GetComponent<PlayerMovement>().health -= 1f;
+            playerHealth -= 1;
             Enemy = other.gameObject;
-            
-            Debug.Log(playerHealth);
         }
         
     }
