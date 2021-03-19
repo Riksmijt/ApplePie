@@ -33,7 +33,7 @@ public class Bokser : MonoBehaviour
             coolDownTimeAb1 += 1 * Time.deltaTime;
             canStartAb1 += 1 * Time.deltaTime;
         }
-        if(coolDownTimeAb1 >= 3)
+        if(coolDownTimeAb1 >= 0.5f)
         {
  
             ab1.SetActive(false);
@@ -50,7 +50,7 @@ public class Bokser : MonoBehaviour
             coolDownTimeAb2 += 1 * Time.deltaTime;
             canStartAb2 += 1 * Time.deltaTime;
         }
-        if (coolDownTimeAb2 >= 3)
+        if (coolDownTimeAb2 >= 0.5f)
         {
 
             ab2.SetActive(false);

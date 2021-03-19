@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        playerHealth = 5;
         punchCounter = 0;
         timer = 0;
         isSpawned = false;
@@ -51,23 +52,23 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (playerHealth < 0f)
+        if (playerHealth <= 0f)
         {
             Enemy.GetComponent<MeshRenderer>().enabled = false;
+            Enemy.transform.position = new Vector3(2, 2, 2);
             timer += 1 * Time.deltaTime;
            // StartCoroutine(RespawnPlayer(Enemy.gameObject));
         }
        if(timer >= 3f)
         {
             Enemy.GetComponent<MeshRenderer>().enabled = true;
-            Enemy.transform.position = new Vector3(2, 2, 2);
             timer = 0;
-            playerHealth = 2;
+            playerHealth = 5;
         }
         if (isPunching)
         {
             punchCounter += 1 * Time.deltaTime;
-            if (punchCounter >= 2)
+            if (punchCounter >= 0.1)
             {
                 arm.SetActive(false);
                 isPunching = false;
@@ -77,10 +78,15 @@ public class PlayerMovement : MonoBehaviour
  
         Debug.Log(playerHealth);
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
-        transform.Rotate(0, rotateInput.y * 3f, 0);
+       
         Debug.Log(isPunching);
 
     }
+    public void FixedUpdate()
+    {
+        transform.Rotate(0, rotateInput.y * 6f, 0, Space.World);
+    }
+
     public void OnMoving(InputAction.CallbackContext ctx)
     {
         if (canMove)
@@ -124,9 +130,12 @@ public class PlayerMovement : MonoBehaviour
         }
         if(other.gameObject.tag == "Bokser" && isPunching == true )
         {
-            //playerHealth = other.gameObject.GetComponent<PlayerMovement>().health -= 1f;
-            playerHealth -= 1;
-            Enemy = other.gameObject;
+            if (playerHealth > 0)
+            {
+                //playerHealth = other.gameObject.GetComponent<PlayerMovement>().health -= 1f;
+                playerHealth -= 1;
+                Enemy = other.gameObject;
+            }
         }
         
     }
