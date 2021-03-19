@@ -54,14 +54,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerHealth <= 0f)
         {
-            Enemy.GetComponent<MeshRenderer>().enabled = false;
+
             Enemy.transform.position = new Vector3(2, 2, 2);
             timer += 1 * Time.deltaTime;
            // StartCoroutine(RespawnPlayer(Enemy.gameObject));
         }
        if(timer >= 3f)
         {
-            Enemy.GetComponent<MeshRenderer>().enabled = true;
             timer = 0;
             playerHealth = 5;
         }
@@ -130,11 +129,12 @@ public class PlayerMovement : MonoBehaviour
         }
         if(other.gameObject.tag == "Bokser" && isPunching == true )
         {
+            Enemy = other.gameObject;
             if (playerHealth > 0)
             {
                 //playerHealth = other.gameObject.GetComponent<PlayerMovement>().health -= 1f;
                 playerHealth -= 1;
-                Enemy = other.gameObject;
+               
             }
         }
         

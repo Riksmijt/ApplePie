@@ -15,6 +15,7 @@ public class Archer : MonoBehaviour
     IEnumerator ArrowShooting()
     {
         isShooting = true;
+        arrow.SetActive(true);
         yield return new WaitForSeconds(2);
         isShooting = false;
 
