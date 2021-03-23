@@ -5,21 +5,28 @@ using UnityEngine.InputSystem;
 
 public class Music : MonoBehaviour
 {
-    public AudioSource mainTheme;
-    public AudioClip aButton;
+    [SerializeField] private AudioSource audioSource;
+    public AudioClip jumpButton;
     // Start is called before the first frame update
     void Start()
     {
-        mainTheme = GetComponent<AudioSource>();
-        mainTheme.Play(0);
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Play(0);
     }
 
     // Update is called once per frame
-    void Update()
+    public void PlayClip(string clipName)
     {
-        if (Gamepad.current.aButton.wasPressedThisFrame)
+        switch (clipName)
         {
-            mainTheme.PlayOneShot(aButton);
+            case "jump":
+                audioSource.PlayOneShot(jumpButton);
+                break;
         }
     }
+    void Update()
+    {
+
+    }
+    
 }

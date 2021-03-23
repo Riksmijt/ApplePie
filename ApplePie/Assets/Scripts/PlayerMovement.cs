@@ -9,29 +9,33 @@ public class PlayerMovement : MonoBehaviour
     private float timer;
     private float punchCounter;
 
-    public bool isGrounded;
+    private bool isGrounded;
     private bool canJump;
-    public bool canMove;
+    private bool canMove;
     private bool isPunching;
+    private bool canDodge;
 
     private Rigidbody selfRigidbody;
 
     public static float playerHealth;
     public static bool isSpawned;
 
-    public GameObject arm;
+    [SerializeField] private GameObject arm;
     private GameObject Enemy;
     private GameObject playerRotation;
+
+    private Music musicManager;
 
     private Vector2 movementInput;
     private Vector2 jumpInput;
     private Vector2 rotateInput;
 
-[SerializeField] private float speed = 5f;
-[SerializeField] private float health = 2f;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float health = 2f;
 
     void Start()
     {
+        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<Music>();
         playerHealth = 5;
         punchCounter = 0;
         timer = 0;
@@ -73,12 +77,16 @@ public class PlayerMovement : MonoBehaviour
                 isPunching = false;
             }
         }
-        
- 
+        if(canDodge == true)
+        {
+            float a = rotateInput.y + 1;
+            selfRigidbody.AddForce(Vector3.back * a * 10000);
+            canDodge = false;
+        }
+    
         Debug.Log(playerHealth);
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
-       
-        Debug.Log(isPunching);
+        Debug.Log(rotateInput.y);
 
     }
     public void FixedUpdate()
@@ -105,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
         {
 
             selfRigidbody.AddForce(0, forceConst, 0, ForceMode.Impulse);
-            
+            musicManager.PlayClip("jump");
 
             canJump = false;
 
@@ -119,6 +127,10 @@ public class PlayerMovement : MonoBehaviour
             isPunching = true;
             punchCounter = 0;
         }
+    }
+    public void OnDodging()
+    {
+        canDodge = true;
     }
     void OnCollisionEnter(Collision other)
     {

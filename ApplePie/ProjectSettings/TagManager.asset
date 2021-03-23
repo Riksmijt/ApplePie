@@ -11,6 +11,7 @@ TagManager:
   - Arm
   - Arrow
   - Bokser_Ab1
+  - MusicManager
   layers:
   - Default
   - TransparentFX

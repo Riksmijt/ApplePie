@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Archer : MonoBehaviour
 {
-    public GameObject arrow;
-    public bool isShooting;
+    [SerializeField] private GameObject arrow;
+    private bool isShooting;
     // Start is called before the first frame update
     void Start()
     {

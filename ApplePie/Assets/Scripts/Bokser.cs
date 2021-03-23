@@ -10,8 +10,8 @@ public class Bokser : MonoBehaviour
     private float canStartAb1 = 0;
     private float canStartAb2 = 0;
 
-    public GameObject ab1;
-    public GameObject ab2;
+    [SerializeField] private GameObject ab1;
+    [SerializeField] private GameObject ab2;
 
     private bool ab1Active;
     private bool isDoingAb1;
