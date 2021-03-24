@@ -221,7 +221,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 1429879992845530711}
-  isShooting: 0
 --- !u!114 &-8981029985533742845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,8 +233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a61d02316fe05e46ba30b2a5d293872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
-  canMove: 0
   arm: {fileID: 126828140}
   speed: 5
   health: 2
@@ -352,6 +349,25 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a16adcc7-ef75-465f-acf1-0b1d566e169d
     m_ActionName: Player/Ab_2[/DualShock4GamepadHID/rightShoulder,/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 843ef254-5f96-4722-a243-daec1c2f5cd5
+    m_ActionName: Player/Dodging[/XInputControllerWindows/buttonEast,/DualShock4GamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -8981029985533742845}
+        m_MethodName: OnPickingUpApple
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5ed7706c-89e0-4eae-982e-bd62d43ab498
+    m_ActionName: Player/PickingUp[/XInputControllerWindows/buttonWest,/DualShock4GamepadHID/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

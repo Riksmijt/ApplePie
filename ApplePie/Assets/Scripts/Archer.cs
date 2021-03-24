@@ -6,11 +6,15 @@ public class Archer : MonoBehaviour
 {
     [SerializeField] private GameObject arrow;
     private bool isShooting;
+    private float timer;
+    private int amountArrows;
     // Start is called before the first frame update
     void Start()
     {
         isShooting = false;
         arrow.SetActive(false);
+        timer = 0;
+        amountArrows = 2;
     }
     IEnumerator ArrowShooting()
     {
@@ -30,16 +34,31 @@ public class Archer : MonoBehaviour
     {
         if (isShooting)
         {
-            arrow.transform.Translate(Vector3.forward * 3 * Time.deltaTime);
+            arrow.transform.Translate(Vector3.back * 30 * Time.deltaTime);
             arrow.transform.parent = null;
         }
+        if(amountArrows <= 0)
+        {
+            timer += 1 * Time.deltaTime;
+            if(timer >= 3)
+            {
+                timer = 0;
+                amountArrows = 2;
+            }
+        }
+        
         else if(!isShooting)
         {
             arrow.transform.parent = transform;
         }
+        Debug.Log(timer);
     }
     public void OnArrowShoot()
     {
-        StartCoroutine(ArrowShooting());
+        if (amountArrows >= 2)
+        {
+            isShooting = true;
+            amountArrows -= 1;
+        }
     }
 }

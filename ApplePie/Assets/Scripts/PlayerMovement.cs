@@ -14,11 +14,13 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove;
     private bool isPunching;
     private bool canDodge;
+   
 
     private Rigidbody selfRigidbody;
 
     public static float playerHealth;
     public static bool isSpawned;
+    private GameObject appleObject;
 
     [SerializeField] private GameObject arm;
     private GameObject Enemy;
@@ -43,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         playerRotation = GameObject.FindGameObjectWithTag("Bokser");
         arm.SetActive(false);
         selfRigidbody = GetComponent<Rigidbody>();
+        
     }
 
     public void OnPlayerJoined(InputAction.CallbackContext context)
@@ -83,10 +86,11 @@ public class PlayerMovement : MonoBehaviour
             selfRigidbody.AddForce(Vector3.back * a * 10000);
             canDodge = false;
         }
-    
+        
+
         Debug.Log(playerHealth);
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
-        Debug.Log(rotateInput.y);
+
 
     }
     public void FixedUpdate()
@@ -132,6 +136,39 @@ public class PlayerMovement : MonoBehaviour
     {
         canDodge = true;
     }
+
+    public void OnPickingUpApple()
+    {
+        RaycastHit[] hits;
+        hits = Physics.SphereCastAll(transform.position, 5, transform.up);
+        for (int i = 0; i < hits.Length; i++)
+        {
+            Debug.Log(hits[i].transform.name);
+            if (appleObject)
+            {
+                if (hits[i].transform.tag == "BasketBlue")
+                {
+                    appleObject.transform.SetParent(null);
+                    appleObject.transform.position = new Vector3(0, 6, -4.5f);
+                    appleObject.GetComponent<Rigidbody>().isKinematic = false;
+                    appleObject = null;
+                    return;
+                }
+            }
+            else
+            {
+                if (hits[i].transform.tag == "Apple")
+                {
+                    appleObject = hits[i].transform.gameObject;
+                    appleObject.transform.SetParent(transform);
+                    appleObject.transform.position = transform.position + transform.forward * 1;
+                    appleObject.GetComponent<Rigidbody>().isKinematic = true;
+                    return;
+                }
+            }
+        }
+    }
+
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Ground")
@@ -139,18 +176,18 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             canMove = true;
         }
-        if(other.gameObject.tag == "Bokser" && isPunching == true )
+        if (other.gameObject.tag == "Bokser" && isPunching == true)
         {
             Enemy = other.gameObject;
             if (playerHealth > 0)
             {
                 //playerHealth = other.gameObject.GetComponent<PlayerMovement>().health -= 1f;
                 playerHealth -= 1;
-               
+
             }
         }
-        
     }
+
 
     void OnCollisionExit(Collision other)
     {

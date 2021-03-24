@@ -12,6 +12,9 @@ TagManager:
   - Arrow
   - Bokser_Ab1
   - MusicManager
+  - BasketBlue
+  - BasketRed
+  - Apple
   layers:
   - Default
   - TransparentFX

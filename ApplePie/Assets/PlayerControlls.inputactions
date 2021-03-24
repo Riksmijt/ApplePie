@@ -76,6 +76,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "PickingUp",
+                    "type": "Button",
+                    "id": "5ed7706c-89e0-4eae-982e-bd62d43ab498",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -175,6 +183,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dodging",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b9001fa2-5adf-40a7-a1c5-0356ccdafb35",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickingUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
