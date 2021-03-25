@@ -66,8 +66,7 @@
     <Compile Include="Assets\Scripts\Arrow.cs" />
     <Compile Include="Assets\Scripts\Basket.cs" />
     <Compile Include="Assets\Scripts\Bokser.cs" />
-    <Compile Include="Assets\Scripts\BokserAb1.cs" />
-    <Compile Include="Assets\Scripts\BokserAb2.cs" />
+    <Compile Include="Assets\Scripts\BokserAbility.cs" />
     <Compile Include="Assets\Scripts\Manager.cs" />
     <Compile Include="Assets\Scripts\Music.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
