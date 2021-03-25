@@ -69,7 +69,6 @@
     <Compile Include="Assets\Scripts\BokserAb1.cs" />
     <Compile Include="Assets\Scripts\BokserAb2.cs" />
     <Compile Include="Assets\Scripts\Manager.cs" />
-    <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\Music.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Reference Include="UnityEngine">

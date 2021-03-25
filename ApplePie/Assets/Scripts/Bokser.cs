@@ -62,6 +62,7 @@ public class Bokser : MonoBehaviour
             canStartAb2 = 0;
         }
     }
+
     public void AbilityOne()
     {
         if (!isDoingAb1)
@@ -70,6 +71,7 @@ public class Bokser : MonoBehaviour
             isDoingAb1 = true;
         }
     }
+
     public void AbbilitieTwo()
     {
         if (!isDoingAb2)

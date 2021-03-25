@@ -10,7 +10,7 @@ public class Archer : MonoBehaviour
     private float timer;
     private int amountArrows;
     private float shotTimer;
-    // Start is called before the first frame update
+
     void Start()
     {
         isShooting = false;
@@ -19,13 +19,11 @@ public class Archer : MonoBehaviour
         shotTimer = 3;
     }
     
-    // Update is called once per frame
     void Update()
     {
-
-            shotTimer -= 1 * Time.deltaTime;
-
+        shotTimer -= 1 * Time.deltaTime;
     }
+
     public void OnArrowShoot(InputAction.CallbackContext ctx)
     {
         if (amountArrows >= 1 && shotTimer <= 0)
@@ -39,8 +37,6 @@ public class Archer : MonoBehaviour
             if (amountArrows <= 0)
             {
                 amountArrows = 2;
-
-                
             }
         }
     }

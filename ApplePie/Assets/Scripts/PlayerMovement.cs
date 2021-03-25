@@ -45,18 +45,13 @@ public class PlayerMovement : MonoBehaviour
         playerRotation = GameObject.FindGameObjectWithTag("Bokser");
         arm.SetActive(false);
         selfRigidbody = GetComponent<Rigidbody>();
-        
     }
 
     public void OnPlayerJoined(InputAction.CallbackContext context)
     {
         Debug.Log("works");
     }
-  
-    void CheckClass()
-    {
 
-    }
     void Update()
     {
         if (playerHealth <= 0f)
@@ -86,15 +81,8 @@ public class PlayerMovement : MonoBehaviour
             selfRigidbody.AddForce(Vector3.back * a * 10000);
             canDodge = false;
         }
-        
-
         Debug.Log(playerHealth);
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
-
-
-    }
-    public void FixedUpdate()
-    {
         transform.Rotate(0, rotateInput.y * 6f, 0, Space.World);
     }
 
@@ -105,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
             movementInput = ctx.ReadValue<Vector2>() * 0.7f;
         }
     }
+
     public void OnRotate(InputAction.CallbackContext ctx)
     {
         rotateInput = ctx.ReadValue<Vector2>();
@@ -115,14 +104,12 @@ public class PlayerMovement : MonoBehaviour
         canJump = true;
         if (canJump && isGrounded)
         {
-
             selfRigidbody.AddForce(0, forceConst, 0, ForceMode.Impulse);
             musicManager.PlayClip("jump");
-
             canJump = false;
-
         }
     }
+
     public void OnPunching()
     {
         if (!isPunching)
@@ -132,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
             punchCounter = 0;
         }
     }
+
     public void OnDodging()
     {
         canDodge = true;
@@ -181,13 +169,10 @@ public class PlayerMovement : MonoBehaviour
             Enemy = other.gameObject;
             if (playerHealth > 0)
             {
-                //playerHealth = other.gameObject.GetComponent<PlayerMovement>().health -= 1f;
                 playerHealth -= 1;
-
             }
         }
     }
-
 
     void OnCollisionExit(Collision other)
     {
@@ -197,8 +182,4 @@ public class PlayerMovement : MonoBehaviour
             canMove = false;
         }
     }
-
-
-
-
 }
