@@ -6,11 +6,11 @@ public class Arrow : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.tag == "Bokser")
+        if(collision.transform.tag == "Bokser" || collision.transform.tag == "Archer" || collision.transform.tag == "Tank")
         {
             PlayerMovement.playerHealth -= 1;
         }
-        if (collision.transform.tag == "Bokser" && Archer.shootingAbilityOne)
+        if(collision.transform.tag == "Bokser" || collision.transform.tag == "Archer" || collision.transform.tag == "Tank")
         {
             PlayerMovement.playerHealth -= 2;
         }
