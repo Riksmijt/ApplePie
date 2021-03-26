@@ -10,5 +10,9 @@ public class Arrow : MonoBehaviour
         {
             PlayerMovement.playerHealth -= 1;
         }
+        if (collision.transform.tag == "Bokser" && Archer.shootingAbilityOne)
+        {
+            PlayerMovement.playerHealth -= 2;
+        }
     }
 }

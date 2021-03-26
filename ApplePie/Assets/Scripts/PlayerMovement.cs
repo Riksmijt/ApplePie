@@ -13,8 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canJump;
     private bool canMove;
     private bool isPunching;
-    private bool canDodge;
-   
+
 
     private Rigidbody selfRigidbody;
 
@@ -37,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        selfRigidbody = GetComponent<Rigidbody>();
         musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<Music>();
         playerHealth = 5;
         punchCounter = 0;
@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         isSpawned = false;
         playerRotation = GameObject.FindGameObjectWithTag("Bokser");
         arm.SetActive(false);
-        selfRigidbody = GetComponent<Rigidbody>();
+
     }
 
     public void OnPlayerJoined(InputAction.CallbackContext context)
@@ -59,9 +59,9 @@ public class PlayerMovement : MonoBehaviour
 
             Enemy.transform.position = new Vector3(2, 2, 2);
             timer += 1 * Time.deltaTime;
-           // StartCoroutine(RespawnPlayer(Enemy.gameObject));
+            // StartCoroutine(RespawnPlayer(Enemy.gameObject));
         }
-       if(timer >= 3f)
+        if (timer >= 3f)
         {
             timer = 0;
             playerHealth = 5;
@@ -74,12 +74,6 @@ public class PlayerMovement : MonoBehaviour
                 arm.SetActive(false);
                 isPunching = false;
             }
-        }
-        if(canDodge == true)
-        {
-            float a = rotateInput.y + 1;
-            selfRigidbody.AddForce(Vector3.back * a * 10000);
-            canDodge = false;
         }
         Debug.Log(playerHealth);
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
@@ -98,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rotateInput = ctx.ReadValue<Vector2>();
     }
-    
+
     public void OnJump()
     {
         canJump = true;
@@ -121,14 +115,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void OnDodging()
-    {
-        canDodge = true;
+    { 
+       
     }
 
     public void OnPickingUpApple()
     {
         RaycastHit[] hits;
-        hits = Physics.SphereCastAll(transform.position, 5, transform.up);
+        hits = Physics.SphereCastAll(transform.position, 7, transform.up);
         for (int i = 0; i < hits.Length; i++)
         {
             Debug.Log(hits[i].transform.name);

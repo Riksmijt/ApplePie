@@ -205,7 +205,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &1288243538154375678
 MonoBehaviour:
@@ -341,7 +341,18 @@ MonoBehaviour:
     m_ActionId: 63199902-4131-455b-931b-4101b5b01e0b
     m_ActionName: Player/ArrowShooting[/DualShock4GamepadHID/leftTrigger,/XInputControllerWindows/leftTrigger]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1288243538154375678}
+        m_MethodName: AbilityOne
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 0b222c02-6020-4ca2-852d-8f94afd0fda6
     m_ActionName: Player/Ab_1[/DualShock4GamepadHID/leftShoulder,/XInputControllerWindows/leftShoulder]
   - m_PersistentCalls:
