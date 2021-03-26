@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.Users;
+using TMPro;
 
 public class Manager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Manager : MonoBehaviour
     private bool appleSpawned;
     bool isPressed;
     [SerializeField] private GameObject Apple;
+    [SerializeField] private TMP_Text blueAmountAppels;
+    [SerializeField] private TMP_Text redAmountAppels;
     public static float blueScore;
     public static float redScore;
 
@@ -30,6 +33,8 @@ public class Manager : MonoBehaviour
             PlayerMovement.playerHealth = 2;
             PlayerMovement.isSpawned = false;
         }
+        blueAmountAppels.text = blueScore.ToString();
+        redAmountAppels.text = redScore.ToString();
     }
 }
 
