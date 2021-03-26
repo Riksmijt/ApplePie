@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 376979598}
   - component: {fileID: 376979597}
   - component: {fileID: 376979596}
-  - component: {fileID: 2496158544222911466}
+  - component: {fileID: 4977062780060201033}
   m_Layer: 0
   m_Name: Ab1
   m_TagString: Bokser_Ab1
@@ -94,7 +94,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2496158544222911466
+--- !u!114 &4977062780060201033
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3246865a982b1b4ebae37b1d72fe0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  force: 1000
 --- !u!1 &470880375
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +119,7 @@ GameObject:
   - component: {fileID: 470880379}
   - component: {fileID: 470880378}
   - component: {fileID: 470880377}
-  - component: {fileID: 8428508304837845464}
+  - component: {fileID: 5037263915983060483}
   m_Layer: 0
   m_Name: Ab2
   m_TagString: Untagged
@@ -200,7 +201,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8428508304837845464
+--- !u!114 &5037263915983060483
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,9 +210,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 470880375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf2fad16e48ab24db0ffdcb1ceff916, type: 3}
+  m_Script: {fileID: 11500000, guid: e3246865a982b1b4ebae37b1d72fe0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  force: 10000
 --- !u!1 &1812706736
 GameObject:
   m_ObjectHideFlags: 0

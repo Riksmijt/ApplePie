@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BokserAb1 : MonoBehaviour
+public class BokserAbility : MonoBehaviour
 {
     [SerializeField] private float force;
 
