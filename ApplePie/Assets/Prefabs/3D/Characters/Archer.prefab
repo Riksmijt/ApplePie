@@ -234,7 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arm: {fileID: 239600395425334185}
   speed: 5
-  health: 2
+  health: 5
 --- !u!114 &4894346207237065530
 MonoBehaviour:
   m_ObjectHideFlags: 0
