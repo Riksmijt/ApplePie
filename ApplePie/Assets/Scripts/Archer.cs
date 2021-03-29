@@ -12,11 +12,13 @@ public class Archer : MonoBehaviour
     private float abilityTwoTimer;
     private int amountArrows;
     private float shotTimer;
+    private Music musicManager;
     public static bool shootingAbilityOne;
     public static bool shootingAbilityTwo;
 
     void Start()
     {
+        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<Music>();
         isShooting = false;
         timer = 0;
         amountArrows = 2;
@@ -36,6 +38,7 @@ public class Archer : MonoBehaviour
         {
             GameObject newArrow = Instantiate(arrow, transform.position + transform.forward * 2,transform.rotation);
             newArrow.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
+            musicManager.PlayClip("Shooting");
             Destroy(newArrow, 2);
             isShooting = true;
             amountArrows -= 1;

@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         }
         Debug.Log(playerHealth);
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
-        transform.Rotate(0, rotateInput.y * 6f, 0, Space.World);
+        transform.Rotate(0, rotateInput.y * 3f, 0, Space.World);
     }
 
     public void OnMoving(InputAction.CallbackContext ctx)
@@ -110,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
         {
             arm.SetActive(true);
             isPunching = true;
+            musicManager.PlayClip("Hitting");
             punchCounter = 0;
         }
     }
@@ -171,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "Bokser" && isPunching == true)
         {
             Enemy = other.gameObject;
+            musicManager.PlayClip("Damage");
             if (playerHealth > 0)
             {
                 playerHealth -= 1;

@@ -6,7 +6,11 @@ using UnityEngine.InputSystem;
 public class Music : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
-    public AudioClip jumpButton;
+    [SerializeField] private AudioClip jumpButton;
+    [SerializeField] private AudioClip shootButton;
+    [SerializeField] private AudioClip hitButton;
+    [SerializeField] private AudioClip damage;
+
 
     void Start()
     {
@@ -21,6 +25,17 @@ public class Music : MonoBehaviour
             case "jump":
                 audioSource.PlayOneShot(jumpButton);
                 break;
+            case "Shooting":
+                audioSource.PlayOneShot(shootButton);
+                break;
+            case "Hitting":
+                audioSource.PlayOneShot(hitButton);
+                break;
+            case "Damage":
+                audioSource.PlayOneShot(damage);
+                break;
+
+
         }
     }
 }
