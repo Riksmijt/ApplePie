@@ -14,10 +14,11 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove;
     private bool isPunching;
 
+    private int slappingStarmina;
 
     private Rigidbody selfRigidbody;
 
-    public static float playerHealth;
+    public float playerHealth;
     public static bool isSpawned;
     private GameObject appleObject;
 
@@ -39,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         selfRigidbody = GetComponent<Rigidbody>();
         musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<Music>();
         playerHealth = 5;
-        punchCounter = 0;
+        punchCounter = 2;
         timer = 0;
         isSpawned = false;
         playerRotation = GameObject.FindGameObjectWithTag("Bokser");
@@ -57,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerHealth <= 0f)
         {
 
-            Enemy.transform.position = new Vector3(2, 2, 2);
+            Enemy.transform.position = new Vector3(2, 10, 2);
             timer += 1 * Time.deltaTime;
             // StartCoroutine(RespawnPlayer(Enemy.gameObject));
         }
@@ -75,9 +76,11 @@ public class PlayerMovement : MonoBehaviour
                 isPunching = false;
             }
         }
+
         Debug.Log(playerHealth);
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
         transform.Rotate(0, rotateInput.y * 3f, 0, Space.World);
+        
     }
 
     public void OnMoving(InputAction.CallbackContext ctx)
@@ -108,12 +111,23 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isPunching)
         {
-            arm.SetActive(true);
-            isPunching = true;
-            musicManager.PlayClip("Hitting");
-            punchCounter = 0;
+             arm.SetActive(true);
+             isPunching = true;
+             musicManager.PlayClip("Hitting");
+             punchCounter = 0;
         }
+        else if (isPunching) 
+        {
+            punchCounter = 2;
+            arm.SetActive(false);
+        }
+        
+
     }
+
+
+
+
 
     public void OnDodging()
     { 

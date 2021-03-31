@@ -8,11 +8,13 @@ public class Arrow : MonoBehaviour
     {
         if(collision.transform.tag == "Bokser" || collision.transform.tag == "Archer" || collision.transform.tag == "Tank")
         {
-            PlayerMovement.playerHealth -= 1;
+            PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+            playerMovement.playerHealth -= 1;
         }
         if(collision.transform.tag == "Bokser" || collision.transform.tag == "Archer" || collision.transform.tag == "Tank")
         {
-            PlayerMovement.playerHealth -= 2;
+            PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+            playerMovement.playerHealth -= 2;
         }
     }
 }

@@ -11,7 +11,8 @@ public class BokserAbility : MonoBehaviour
         if(collision.transform.tag == "Bokser")
         {
             collision.transform.GetComponent<Rigidbody>().AddForce(Vector3.back * force);
-            PlayerMovement.playerHealth += 1;
+            PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+            playerMovement.playerHealth -= 1;
         }
     }
 }

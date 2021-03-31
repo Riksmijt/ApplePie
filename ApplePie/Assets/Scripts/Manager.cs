@@ -28,9 +28,10 @@ public class Manager : MonoBehaviour
 
     void Update()
     {
-        if(PlayerMovement.playerHealth < 0 && PlayerMovement.isSpawned)
+        PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+        if (playerMovement.playerHealth < 0 && PlayerMovement.isSpawned)
         {
-            PlayerMovement.playerHealth = 2;
+            playerMovement.playerHealth = 2;
             PlayerMovement.isSpawned = false;
         }
         blueAmountAppels.text = blueScore.ToString();
