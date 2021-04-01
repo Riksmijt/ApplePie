@@ -170,6 +170,7 @@ public class PlayerMovement : MonoBehaviour
                     appleObject.transform.position = new Vector3(0, 6, -4.5f);
                     appleObject.GetComponent<Rigidbody>().isKinematic = false;
                     appleObject = null;
+                    musicManager.PlayClip("PointAdded");
                     return;
                 }
                 if (hits[i].transform.tag == "BasketRed")
@@ -178,6 +179,7 @@ public class PlayerMovement : MonoBehaviour
                     appleObject.transform.SetParent(null);
                     appleObject.transform.position = new Vector3(0, 6, -4.5f);
                     appleObject.GetComponent<Rigidbody>().isKinematic = false;
+
                     appleObject = null;
                     return;
                 }
@@ -186,6 +188,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (hits[i].transform.tag == "Apple")
                 {
+                    musicManager.PlayClip("ApplePickedUp");
                     appleObject = hits[i].transform.gameObject;
                     appleObject.transform.SetParent(transform);
                     appleObject.transform.position = transform.position + transform.forward * 1.5f;
