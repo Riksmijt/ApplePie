@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 230330412056679094}
   - component: {fileID: 8013242608704620692}
   m_Layer: 0
-  m_Name: Cube (4) 1
-  m_TagString: Untagged
+  m_Name: Arrow
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,3 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd730068ed124f4a9cb8319da051f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stunArrowHit: 0

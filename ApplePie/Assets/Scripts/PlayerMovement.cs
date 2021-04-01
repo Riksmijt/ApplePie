@@ -9,8 +9,9 @@ public class PlayerMovement : MonoBehaviour
     private float timer;
     private float punchCounter;
     private float saveHealth;
+    public float saveSpeed;
 
-    private bool isGrounded;
+    public bool isGrounded;
     private bool canJump;
     public bool canMove;
     private bool canAttack = true;
@@ -32,8 +33,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movementInput;
     private Vector2 jumpInput;
     private Vector2 rotateInput;
+    private Arrow arrow;
 
-    [SerializeField] private float speed = 5f;
+    public float speed = 5f;
     [SerializeField] private float health = 2f;
 
     private GameObject manager;
@@ -45,12 +47,12 @@ public class PlayerMovement : MonoBehaviour
         playerHealth = 5;
         punchCounter = 2;
         saveHealth = playerHealth;
+        saveSpeed = speed;
         timer = 0;
         isSpawned = false;
         playerRotation = GameObject.FindGameObjectWithTag("Bokser");
         arm.SetActive(false);
         manager = GameObject.Find("PlayerManager");
-       
     }
     IEnumerator StartAttackCoolDown()
     {
@@ -74,14 +76,19 @@ public class PlayerMovement : MonoBehaviour
             timer = 0;
             playerHealth = 5;
         }
-       
 
         Debug.Log(playerHealth);
+        Debug.Log(saveSpeed);
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
         transform.Rotate(0, rotateInput.y * 3f, 0, Space.World);
         
     }
-
+    IEnumerator StunPlayer()
+    {
+        speed = 0;
+        yield return new WaitForSeconds(4);
+        speed = saveSpeed;
+    }
     public void OnMoving(InputAction.CallbackContext ctx)
     {
         if (canMove)
@@ -101,15 +108,16 @@ public class PlayerMovement : MonoBehaviour
         if (canJump && isGrounded)
         {
             selfRigidbody.AddForce(0, forceConst, 0, ForceMode.Impulse);
-            musicManager.PlayClip("jump");
+            musicManager.PlayClip("jump",0.4f);
             canJump = false;
         }
     }
 
     public void OnPunching()
     {
+
         if (canAttack)
-        {
+        { 
             RaycastHit[] hits;
             hits = Physics.SphereCastAll(transform.position + transform.forward * 1, 1, transform.up);
             for (int i = 0; i < hits.Length; i++)
@@ -117,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log(hits[i].transform.name);
                 if (hits[i].collider.tag == "Player" && hits[i].collider.gameObject != gameObject)
                 {
+                    musicManager.PlayClip("Hitting", 0.3f);
                     hits[i].collider.GetComponent<PlayerMovement>().TakeDamage(1);
                     StartCoroutine(StartAttackCoolDown());
                     return;
@@ -170,7 +179,6 @@ public class PlayerMovement : MonoBehaviour
                     appleObject.transform.position = new Vector3(0, 6, -4.5f);
                     appleObject.GetComponent<Rigidbody>().isKinematic = false;
                     appleObject = null;
-                    musicManager.PlayClip("PointAdded");
                     return;
                 }
                 if (hits[i].transform.tag == "BasketRed")
@@ -188,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (hits[i].transform.tag == "Apple")
                 {
-                    musicManager.PlayClip("ApplePickedUp");
+                    musicManager.PlayClip("ApplePickedUp",0.4f);
                     appleObject = hits[i].transform.gameObject;
                     appleObject.transform.SetParent(transform);
                     appleObject.transform.position = transform.position + transform.forward * 1.5f;
@@ -213,6 +221,15 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
             canMove = true;
+        }
+        if(other.gameObject.tag == "Arrow") 
+        {
+            other.gameObject.GetComponent<Arrow>().stunArrowHit = true;
+            if(other.gameObject.GetComponent<Arrow>().stunArrowHit == true) 
+            {
+                StartCoroutine(StunPlayer());
+                other.gameObject.GetComponent<Arrow>().stunArrowHit = false;
+            }
         }
         /*if (other.gameObject.tag == "Player" && isPunching == true && other.gameObject != arm)
         {

@@ -6,6 +6,7 @@ public class Arrow : MonoBehaviour
 {
     Archer archer;
     PlayerMovement playerMovement;
+    public bool stunArrowHit;
     private void OnCollisionEnter(Collision collision)
     {
         switch (collision.transform.tag)
@@ -24,6 +25,7 @@ public class Arrow : MonoBehaviour
             if (archer.shootingAbilityTwo)
             {
                 DoDamage(collision.gameObject, 1);
+                stunArrowHit = true;
                 return;
             }
             DoDamage(collision.gameObject, 1);
@@ -32,10 +34,10 @@ public class Arrow : MonoBehaviour
         
         
     }
+   
     private void DoDamage(GameObject target, float damage)
     {
         target.GetComponent<PlayerMovement>().playerHealth -= damage;
-        
     }
     public void SetArcher(Archer newArcher)
     {

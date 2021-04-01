@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &239600395425334197
 Transform:
   m_ObjectHideFlags: 0
@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a61d02316fe05e46ba30b2a5d293872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrounded: 0
   canMove: 0
   playerHealth: 0
   arm: {fileID: 239600395425334185}
@@ -360,7 +361,18 @@ MonoBehaviour:
     m_ActionId: 0b222c02-6020-4ca2-852d-8f94afd0fda6
     m_ActionName: Player/Ab_1[/DualShock4GamepadHID/leftShoulder,/XInputControllerWindows/leftShoulder]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1288243538154375678}
+        m_MethodName: AbilityTwo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a16adcc7-ef75-465f-acf1-0b1d566e169d
     m_ActionName: Player/Ab_2[/DualShock4GamepadHID/rightShoulder,/XInputControllerWindows/rightShoulder]
   - m_PersistentCalls:

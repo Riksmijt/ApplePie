@@ -24,12 +24,14 @@ public class Archer : MonoBehaviour
         amountArrows = 2;
         shotTimer = 3;
         abilityOneTimer = 9;
+        abilityTwoTimer = 4;
     }
     
     void Update()
     {
         shotTimer -= 1 * Time.deltaTime;
         abilityOneTimer -= 1 * Time.deltaTime;
+        abilityTwoTimer -= 1 * Time.deltaTime;
     }
 
     public void OnArrowShoot(InputAction.CallbackContext ctx)
@@ -39,7 +41,7 @@ public class Archer : MonoBehaviour
             GameObject newArrow = Instantiate(arrow, transform.position + transform.forward * 2,transform.rotation);
             newArrow.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
             newArrow.GetComponent<Arrow>().SetArcher(this);
-            musicManager.PlayClip("Shooting");
+            musicManager.PlayClip("Shooting",1);
             Destroy(newArrow, 2);
             isShooting = true;
             amountArrows -= 1;
@@ -65,7 +67,7 @@ public class Archer : MonoBehaviour
     }
     public void AbilityTwo()
     {
-        if (abilityOneTimer <= 0)
+        if (abilityTwoTimer <= 0)
         {
             GameObject newArrow = Instantiate(arrow, transform.position + transform.forward * 2, transform.rotation);
             newArrow.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
@@ -73,7 +75,7 @@ public class Archer : MonoBehaviour
             newArrow.GetComponent<Arrow>().SetArcher(this);
             Destroy(newArrow, 2);
             shootingAbilityTwo = true;
-            abilityOneTimer = 9;
+            abilityTwoTimer = 4;
         }
     }
 }
