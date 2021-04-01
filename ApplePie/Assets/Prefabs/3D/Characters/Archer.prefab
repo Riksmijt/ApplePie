@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 4894346207237065530}
   m_Layer: 0
   m_Name: Archer
-  m_TagString: Archer
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,6 +220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 8999095807772907618, guid: 9b09bb535aa36be4195ebbe29418cc59, type: 3}
+  shootingAbilityOne: 0
+  shootingAbilityTwo: 0
 --- !u!114 &4437102895877318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +234,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a61d02316fe05e46ba30b2a5d293872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 0
+  playerHealth: 0
   arm: {fileID: 239600395425334185}
   speed: 5
   health: 5

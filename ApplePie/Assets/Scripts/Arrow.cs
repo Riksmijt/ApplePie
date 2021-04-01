@@ -4,17 +4,41 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+    Archer archer;
+    PlayerMovement playerMovement;
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.tag == "Bokser" || collision.transform.tag == "Archer" || collision.transform.tag == "Tank")
+        switch (collision.transform.tag)
         {
-            PlayerMovement playerMovement = GetComponent<PlayerMovement>();
-            playerMovement.playerHealth -= 1;
+            case "Bokser":
+                DoDamage(collision.gameObject, 1);
+                break;
         }
-        if(collision.transform.tag == "Bokser" || collision.transform.tag == "Archer" || collision.transform.tag == "Tank")
+        if(collision.transform.tag == "Player")
         {
-            PlayerMovement playerMovement = GetComponent<PlayerMovement>();
-            playerMovement.playerHealth -= 2;
+            if (archer.shootingAbilityOne)
+            {
+                DoDamage(collision.gameObject, 2);
+                return;
+            }
+            if (archer.shootingAbilityTwo)
+            {
+                DoDamage(collision.gameObject, 1);
+                return;
+            }
+            DoDamage(collision.gameObject, 1);
+           
         }
+        
+        
+    }
+    private void DoDamage(GameObject target, float damage)
+    {
+        target.GetComponent<PlayerMovement>().playerHealth -= damage;
+        
+    }
+    public void SetArcher(Archer newArcher)
+    {
+        archer = newArcher;
     }
 }

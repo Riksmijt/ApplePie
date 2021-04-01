@@ -8,11 +8,12 @@ public class PlayerMovement : MonoBehaviour
     private int forceConst = 60;
     private float timer;
     private float punchCounter;
+    private float saveHealth;
 
     private bool isGrounded;
     private bool canJump;
-    private bool canMove;
-    private bool isPunching;
+    public bool canMove;
+    private bool canAttack = true;
 
     private int slappingStarmina;
 
@@ -35,19 +36,28 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private float health = 2f;
 
+    private GameObject manager;
+
     void Start()
     {
         selfRigidbody = GetComponent<Rigidbody>();
         musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<Music>();
         playerHealth = 5;
         punchCounter = 2;
+        saveHealth = playerHealth;
         timer = 0;
         isSpawned = false;
         playerRotation = GameObject.FindGameObjectWithTag("Bokser");
         arm.SetActive(false);
-
+        manager = GameObject.Find("PlayerManager");
+       
     }
-
+    IEnumerator StartAttackCoolDown()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(1);
+        canAttack = true;
+    }
     public void OnPlayerJoined(InputAction.CallbackContext context)
     {
         Debug.Log("works");
@@ -57,25 +67,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerHealth <= 0f)
         {
-
-            Enemy.transform.position = new Vector3(2, 10, 2);
             timer += 1 * Time.deltaTime;
-            // StartCoroutine(RespawnPlayer(Enemy.gameObject));
         }
         if (timer >= 3f)
         {
             timer = 0;
             playerHealth = 5;
         }
-        if (isPunching)
-        {
-            punchCounter += 1 * Time.deltaTime;
-            if (punchCounter >= 0.1)
-            {
-                arm.SetActive(false);
-                isPunching = false;
-            }
-        }
+       
 
         Debug.Log(playerHealth);
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
@@ -109,31 +108,52 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnPunching()
     {
-        if (!isPunching)
+        if (canAttack)
         {
-             arm.SetActive(true);
-             isPunching = true;
-             musicManager.PlayClip("Hitting");
-             punchCounter = 0;
+            RaycastHit[] hits;
+            hits = Physics.SphereCastAll(transform.position + transform.forward * 1, 1, transform.up);
+            for (int i = 0; i < hits.Length; i++)
+            {
+                Debug.Log(hits[i].transform.name);
+                if (hits[i].collider.tag == "Player" && hits[i].collider.gameObject != gameObject)
+                {
+                    hits[i].collider.GetComponent<PlayerMovement>().TakeDamage(1);
+                    StartCoroutine(StartAttackCoolDown());
+                    return;
+                }
+            }
         }
-        else if (isPunching) 
-        {
-            punchCounter = 2;
-            arm.SetActive(false);
+       
+    
+            /*if (!isPunching)
+            {
+                 arm.SetActive(true);
+                 isPunching = true;
+                 musicManager.PlayClip("Hitting");
+                 punchCounter = 0;
+            }
+            else if (isPunching) 
+            {
+                punchCounter = 2;
+                arm.SetActive(false);
+            }*/
+
+
         }
-        
-
-    }
-
-
-
-
-
     public void OnDodging()
     { 
        
     }
 
+    public void TakeDamage(float damage)
+    {
+        playerHealth-= damage;
+        if(playerHealth <= 0) 
+        {
+            transform.position = new Vector3(2, 10, 2);
+            playerHealth = saveHealth;
+        }
+    }
     public void OnPickingUpApple()
     {
         RaycastHit[] hits;
@@ -172,6 +192,14 @@ public class PlayerMovement : MonoBehaviour
                     appleObject.GetComponent<Rigidbody>().isKinematic = true;
                     return;
                 }
+                if(playerHealth <= 0) 
+                {
+                    appleObject.transform.SetParent(null);
+                    appleObject.transform.position = new Vector3(0, 6, -4.5f);
+                    appleObject.GetComponent<Rigidbody>().isKinematic = false;
+                    appleObject = null;
+                    return;
+                }
             }
         }
     }
@@ -183,15 +211,19 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             canMove = true;
         }
-        if (other.gameObject.tag == "Bokser" && isPunching == true)
+        /*if (other.gameObject.tag == "Player" && isPunching == true && other.gameObject != arm)
         {
             Enemy = other.gameObject;
             musicManager.PlayClip("Damage");
             if (playerHealth > 0)
             {
                 playerHealth -= 1;
+                if(playerHealth <= 0)
+                {
+                    
+                }
             }
-        }
+        }*/
     }
 
     void OnCollisionExit(Collision other)

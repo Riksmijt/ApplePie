@@ -18,6 +18,7 @@ public class Manager : MonoBehaviour
     [SerializeField] private TMP_Text redAmountAppels;
     public static float blueScore;
     public static float redScore;
+   // public GameObject deadPlayer;
 
     private void Start()
     {
@@ -28,12 +29,12 @@ public class Manager : MonoBehaviour
 
     void Update()
     {
-        PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+       /* PlayerMovement playerMovement = GetComponent<PlayerMovement>();
         if (playerMovement.playerHealth < 0 && PlayerMovement.isSpawned)
         {
             playerMovement.playerHealth = 2;
             PlayerMovement.isSpawned = false;
-        }
+        }*/
         blueAmountAppels.text = blueScore.ToString();
         redAmountAppels.text = redScore.ToString();
     }

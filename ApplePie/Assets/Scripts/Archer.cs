@@ -13,8 +13,8 @@ public class Archer : MonoBehaviour
     private int amountArrows;
     private float shotTimer;
     private Music musicManager;
-    public static bool shootingAbilityOne;
-    public static bool shootingAbilityTwo;
+    public bool shootingAbilityOne;
+    public bool shootingAbilityTwo;
 
     void Start()
     {
@@ -38,6 +38,7 @@ public class Archer : MonoBehaviour
         {
             GameObject newArrow = Instantiate(arrow, transform.position + transform.forward * 2,transform.rotation);
             newArrow.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
+            newArrow.GetComponent<Arrow>().SetArcher(this);
             musicManager.PlayClip("Shooting");
             Destroy(newArrow, 2);
             isShooting = true;
@@ -56,6 +57,7 @@ public class Archer : MonoBehaviour
             GameObject newArrow = Instantiate(arrow, transform.position + transform.forward * 2, transform.rotation);
             newArrow.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
             newArrow.GetComponent<MeshRenderer>().material.color = Color.red;
+            newArrow.GetComponent<Arrow>().SetArcher(this);
             Destroy(newArrow, 2);
             shootingAbilityOne = true;
             abilityOneTimer = 9;
@@ -63,6 +65,15 @@ public class Archer : MonoBehaviour
     }
     public void AbilityTwo()
     {
-
+        if (abilityOneTimer <= 0)
+        {
+            GameObject newArrow = Instantiate(arrow, transform.position + transform.forward * 2, transform.rotation);
+            newArrow.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
+            newArrow.GetComponent<MeshRenderer>().material.color = Color.green;
+            newArrow.GetComponent<Arrow>().SetArcher(this);
+            Destroy(newArrow, 2);
+            shootingAbilityTwo = true;
+            abilityOneTimer = 9;
+        }
     }
 }

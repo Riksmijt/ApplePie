@@ -204,7 +204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1884088509
 Transform:
   m_ObjectHideFlags: 0
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 1829022538981439176}
   m_Layer: 0
   m_Name: Boxer_NoRig_Test1
-  m_TagString: Bokser
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -507,6 +507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a61d02316fe05e46ba30b2a5d293872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 0
   playerHealth: 0
   arm: {fileID: 1884088508}
   speed: 5
