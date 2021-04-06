@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator StunPlayer()
     {
         speed = 0;
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2);
         speed = saveSpeed;
     }
     public void OnMoving(InputAction.CallbackContext ctx)
