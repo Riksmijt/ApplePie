@@ -23,7 +23,6 @@ public class Music : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.Play(0);
     }
-
     public void PlayClip(string clipName, float volume)
     {
         switch (clipName)

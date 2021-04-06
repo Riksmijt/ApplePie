@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody selfRigidbody;
 
+    public int index;
+
     public float playerHealth;
     public static bool isSpawned;
     private GameObject appleObject;
@@ -80,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(playerHealth);
         Debug.Log(saveSpeed);
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
-        transform.Rotate(0, rotateInput.y * 3f, 0, Space.World);
+        transform.Rotate(0, rotateInput.x * 3f, 0, Space.World);
         
     }
     IEnumerator StunPlayer()
@@ -132,22 +134,6 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-       
-    
-            /*if (!isPunching)
-            {
-                 arm.SetActive(true);
-                 isPunching = true;
-                 musicManager.PlayClip("Hitting");
-                 punchCounter = 0;
-            }
-            else if (isPunching) 
-            {
-                punchCounter = 2;
-                arm.SetActive(false);
-            }*/
-
-
         }
     public void OnDodging()
     { 

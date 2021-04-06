@@ -673,6 +673,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a61d02316fe05e46ba30b2a5d293872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveSpeed: 0
+  isGrounded: 0
+  canMove: 0
+  index: 1
+  playerHealth: 0
   arm: {fileID: 1812706736}
   speed: 9
   health: 2
