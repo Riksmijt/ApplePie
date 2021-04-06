@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(playerHealth);
         Debug.Log(saveSpeed);
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
-        transform.Rotate(0, rotateInput.x * 3f, 0, Space.World);
+        transform.Rotate(0, rotateInput.x * 1f, 0, Space.World);
         
     }
     IEnumerator StunPlayer()
@@ -147,6 +147,14 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = new Vector3(2, 10, 2);
             playerHealth = saveHealth;
+            if (appleObject)
+            {
+                appleObject.transform.SetParent(null);
+                appleObject.transform.position = new Vector3(0, 6, -4.5f);
+                appleObject.GetComponent<Rigidbody>().isKinematic = false;
+                appleObject = null;
+            }
+            
         }
     }
     public void OnPickingUpApple()
@@ -189,14 +197,7 @@ public class PlayerMovement : MonoBehaviour
                     appleObject.GetComponent<Rigidbody>().isKinematic = true;
                     return;
                 }
-                if(playerHealth <= 0) 
-                {
-                    appleObject.transform.SetParent(null);
-                    appleObject.transform.position = new Vector3(0, 6, -4.5f);
-                    appleObject.GetComponent<Rigidbody>().isKinematic = false;
-                    appleObject = null;
-                    return;
-                }
+                
             }
         }
     }
@@ -210,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if(other.gameObject.tag == "Arrow") 
         {
-            other.gameObject.GetComponent<Arrow>().stunArrowHit = true;
+           // other.gameObject.GetComponent<Arrow>().stunArrowHit = true;
             if(other.gameObject.GetComponent<Arrow>().stunArrowHit == true) 
             {
                 StartCoroutine(StunPlayer());
