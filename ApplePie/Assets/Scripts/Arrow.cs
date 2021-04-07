@@ -19,25 +19,22 @@ public class Arrow : MonoBehaviour
         {
             if (archer.shootingAbilityOne)
             {
-                DoDamage(collision.gameObject, 2);
+                collision.gameObject.GetComponent<PlayerMovement>().TakeDamage(2,false);
                 return;
             }
             if (archer.shootingAbilityTwo)
             {
-                DoDamage(collision.gameObject, 1);
+                collision.gameObject.GetComponent<PlayerMovement>().TakeDamage(1,true);
+
                 stunArrowHit = true;
                 return;
             }
-            
-            DoDamage(collision.gameObject, 1);
-           
+
+            collision.gameObject.GetComponent<PlayerMovement>().TakeDamage(1,false);
+
         }
         
         
-    }
-    private void Update()
-    {
-        stunArrowHit = false;
     }
 
     private void DoDamage(GameObject target, float damage)

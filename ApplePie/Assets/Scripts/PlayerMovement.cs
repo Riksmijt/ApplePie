@@ -87,8 +87,10 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator StunPlayer()
     {
+        Debug.Log("Courentine started");
         speed = 0;
         yield return new WaitForSeconds(2);
+        Debug.Log("Courentine ended");
         speed = saveSpeed;
     }
     public void OnMoving(InputAction.CallbackContext ctx)
@@ -128,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
                 if (hits[i].collider.tag == "Player" && hits[i].collider.gameObject != gameObject)
                 {
                     musicManager.PlayClip("Hitting", 0.3f);
-                    hits[i].collider.GetComponent<PlayerMovement>().TakeDamage(1);
+                    hits[i].collider.GetComponent<PlayerMovement>().TakeDamage(1,false);
                     StartCoroutine(StartAttackCoolDown());
                     return;
                 }
@@ -140,21 +142,30 @@ public class PlayerMovement : MonoBehaviour
        
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool stunHit)
     {
         playerHealth-= damage;
+        
         if(playerHealth <= 0) 
         {
-            transform.position = new Vector3(2, 10, 2);
-            playerHealth = saveHealth;
+            
+            
             if (appleObject)
             {
                 appleObject.transform.SetParent(null);
-                appleObject.transform.position = new Vector3(0, 6, -4.5f);
+                //appleObject.transform.position = new Vector3(0, 6, -4.5f);
                 appleObject.GetComponent<Rigidbody>().isKinematic = false;
                 appleObject = null;
+
             }
-            
+            transform.position = new Vector3(2, 10, 2);
+            playerHealth = saveHealth;
+            //return;
+        }
+        if (stunHit)
+        {
+            Debug.Log(stunHit);
+            StartCoroutine(StunPlayer());
         }
     }
     public void OnPickingUpApple()
@@ -209,7 +220,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             canMove = true;
         }
-        if(other.gameObject.tag == "Arrow") 
+       /* if(other.gameObject.tag == "Arrow") 
         {
            // other.gameObject.GetComponent<Arrow>().stunArrowHit = true;
             if(other.gameObject.GetComponent<Arrow>().stunArrowHit == true) 
@@ -217,7 +228,7 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(StunPlayer());
                 other.gameObject.GetComponent<Arrow>().stunArrowHit = false;
             }
-        }
+        }*/
         /*if (other.gameObject.tag == "Player" && isPunching == true && other.gameObject != arm)
         {
             Enemy = other.gameObject;

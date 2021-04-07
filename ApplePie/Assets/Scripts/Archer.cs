@@ -44,6 +44,8 @@ public class Archer : MonoBehaviour
             musicManager.PlayClip("Shooting",1);
             Destroy(newArrow, 2);
             isShooting = true;
+            shootingAbilityOne = false;
+            shootingAbilityTwo = false;
             amountArrows -= 1;
             shotTimer = 3;
             if (amountArrows <= 0)
@@ -57,11 +59,12 @@ public class Archer : MonoBehaviour
         if (abilityOneTimer <= 0)
         {
             GameObject newArrow = Instantiate(arrow, transform.position + transform.forward * 2, transform.rotation);
+            newArrow.GetComponent<Arrow>().SetArcher(this);
             newArrow.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
             newArrow.GetComponent<MeshRenderer>().material.color = Color.red;
-            newArrow.GetComponent<Arrow>().SetArcher(this);
             Destroy(newArrow, 2);
             shootingAbilityOne = true;
+            shootingAbilityTwo = false;
             abilityOneTimer = 9;
         }
     }
@@ -74,6 +77,7 @@ public class Archer : MonoBehaviour
             newArrow.GetComponent<MeshRenderer>().material.color = Color.green;
             newArrow.GetComponent<Arrow>().SetArcher(this);
             Destroy(newArrow, 2);
+            shootingAbilityOne = false;
             shootingAbilityTwo = true;
             abilityTwoTimer = 4;
         }
