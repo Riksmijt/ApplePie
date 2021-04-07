@@ -37,7 +37,7 @@ public class Manager : MonoBehaviour
     }
     public void OnPlayerJoined(PlayerInput playerInput)
     {
-        Debug.Log("Spawned");
+        Debug.Log(Gamepad.current);
         playermovement = playerInput.gameObject.GetComponent<PlayerMovement>();
         if(playermovement.index == 0) 
         {

@@ -171,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
     public void OnPickingUpApple()
     {
         RaycastHit[] hits;
-        hits = Physics.SphereCastAll(transform.position, 7, transform.up);
+        hits = Physics.SphereCastAll(transform.position, 1, transform.up);
         for (int i = 0; i < hits.Length; i++)
         {
             Debug.Log(hits[i].transform.name);

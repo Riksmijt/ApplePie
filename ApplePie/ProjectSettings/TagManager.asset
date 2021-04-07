@@ -15,6 +15,7 @@ TagManager:
   - BasketBlue
   - BasketRed
   - Apple
+  - Yard
   layers:
   - Default
   - TransparentFX
