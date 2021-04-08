@@ -5,9 +5,11 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.Users;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
 {
+    [SerializeField] private int scene;
     private bool archerIsSpawned;
     private bool bokserIsSpawned;
     private bool tankIsSpawned;
@@ -46,12 +48,10 @@ public class Manager : MonoBehaviour
     }
     void Update()
     {
-       /* PlayerMovement playerMovement = GetComponent<PlayerMovement>();
-        if (playerMovement.playerHealth < 0 && PlayerMovement.isSpawned)
+       if(blueScore >= 5 || redScore >= 5)
         {
-            playerMovement.playerHealth = 2;
-            PlayerMovement.isSpawned = false;
-        }*/
+            SceneManager.LoadScene(scene);
+        }
         blueAmountAppels.text = blueScore.ToString();
         redAmountAppels.text = redScore.ToString();
     }
