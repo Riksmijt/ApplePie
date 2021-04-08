@@ -7,6 +7,7 @@ using UnityEngine.InputSystem.Users;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+
 public class Manager : MonoBehaviour
 {
     [SerializeField] private int scene;
@@ -32,10 +33,6 @@ public class Manager : MonoBehaviour
         blueScore = 0;
         redScore = 0;
         Instantiate(Apple);
-    }
-    private void Awake()
-    {
-        var players = FindObjectOfType<PlayerMovement>();
     }
     public void OnPlayerJoined(PlayerInput playerInput)
     {
