@@ -10,6 +10,8 @@ using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
 {
+    private GameObject player1;
+    private GameObject player2;
     [SerializeField] private int scene;
     private bool archerIsSpawned;
     private bool bokserIsSpawned;
@@ -29,6 +31,7 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
+        
         randomPicker = Random.Range(0, 1);
         blueScore = 0;
         redScore = 0;
@@ -36,6 +39,14 @@ public class Manager : MonoBehaviour
     }
     public void OnPlayerJoined(PlayerInput playerInput)
     {
+        if(playerInput.playerIndex == 1)
+        {
+            player1 = playerInput.gameObject;
+        }
+        if(playerInput.playerIndex == 2)
+        {
+            player2 = playerInput.gameObject;
+        }
         Debug.Log(Gamepad.current);
         playermovement = playerInput.gameObject.GetComponent<PlayerMovement>();
         if(playermovement.index == 0) 
@@ -49,6 +60,8 @@ public class Manager : MonoBehaviour
         {
             SceneManager.LoadScene(scene);
         }
+        Debug.Log(player1.transform.position);
+        Debug.Log(player2.transform.position);
         blueAmountAppels.text = blueScore.ToString();
         redAmountAppels.text = redScore.ToString();
     }

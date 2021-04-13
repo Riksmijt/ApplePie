@@ -179,21 +179,22 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (hits[i].transform.tag == "BasketBlue")
                 {
-                    Manager.blueScore += 0.5f;
+                    
                     appleObject.transform.SetParent(null);
                     appleObject.transform.position = new Vector3(0, 6, -4.5f);
                     appleObject.GetComponent<Rigidbody>().isKinematic = false;
                     appleObject = null;
+                    Manager.blueScore += 0.5f;
                     return;
                 }
                 if (hits[i].transform.tag == "BasketRed")
                 {
-                    Manager.redScore += 0.5f;
+                    
                     appleObject.transform.SetParent(null);
                     appleObject.transform.position = new Vector3(0, 6, -4.5f);
                     appleObject.GetComponent<Rigidbody>().isKinematic = false;
-
                     appleObject = null;
+                    Manager.redScore += 0.5f;
                     return;
                 }
             }

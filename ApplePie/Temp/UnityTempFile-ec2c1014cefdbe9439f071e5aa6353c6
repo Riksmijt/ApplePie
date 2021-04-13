@@ -292,6 +292,7 @@
 /define:ENABLE_INPUT_SYSTEM
 /define:CSHARP_7_OR_LATER
 /define:CSHARP_7_3_OR_NEWER
+Assets\Scripts\ActivePlayer.cs
 Assets\Scripts\Apple.cs
 Assets\Scripts\Archer.cs
 Assets\Scripts\Arrow.cs
