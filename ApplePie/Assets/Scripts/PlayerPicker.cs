@@ -11,7 +11,7 @@ public class PlayerPicker : MonoBehaviour
     // Start is called before the first frame update
     public void LoadArcher()
     {
-        Debug.Log("Works");
+
         loadArcher = true;
         loadBokser = false;
         SceneManager.LoadScene(scene);

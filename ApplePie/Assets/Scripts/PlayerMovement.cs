@@ -78,9 +78,6 @@ public class PlayerMovement : MonoBehaviour
             timer = 0;
             playerHealth = 5;
         }
-
-        Debug.Log(playerHealth);
-        Debug.Log(saveSpeed);
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
         transform.Rotate(0, rotateInput.x * 1f, 0, Space.World);
         
@@ -170,6 +167,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnPickingUpApple()
     {
+        Debug.Log("Pressed appel");
         RaycastHit[] hits;
         hits = Physics.SphereCastAll(transform.position, 1, transform.up);
         for (int i = 0; i < hits.Length; i++)
@@ -179,22 +177,22 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (hits[i].transform.tag == "BasketBlue")
                 {
-                    
+                    Debug.Log("Dropped apple");
                     appleObject.transform.SetParent(null);
                     appleObject.transform.position = new Vector3(0, 6, -4.5f);
                     appleObject.GetComponent<Rigidbody>().isKinematic = false;
                     appleObject = null;
-                    Manager.blueScore += 0.5f;
+                    Manager.blueScore += 1f;
                     return;
                 }
                 if (hits[i].transform.tag == "BasketRed")
                 {
-                    
+                    Debug.Log("Dropped apple");
                     appleObject.transform.SetParent(null);
                     appleObject.transform.position = new Vector3(0, 6, -4.5f);
                     appleObject.GetComponent<Rigidbody>().isKinematic = false;
                     appleObject = null;
-                    Manager.redScore += 0.5f;
+                    Manager.redScore += 1f;
                     return;
                 }
             }

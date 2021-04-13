@@ -53,7 +53,7 @@ public class Manager : MonoBehaviour
         playermovement = playerInput.gameObject.GetComponent<PlayerMovement>();
         if(playermovement.index == 0) 
         {
-            Debug.Log("Archer");
+
         }
     }
     void Update()
@@ -62,8 +62,8 @@ public class Manager : MonoBehaviour
         {
             SceneManager.LoadScene(scene);
         }
-        Debug.Log(player1.transform.position);
-        Debug.Log(player2.transform.position);
+        //Debug.Log(player1.transform.position);
+        //Debug.Log(player2.transform.position);
         blueAmountAppels.text = blueScore.ToString();
         redAmountAppels.text = redScore.ToString();
     }
