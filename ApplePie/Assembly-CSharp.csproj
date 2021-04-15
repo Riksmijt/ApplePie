@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\LoadScene.cs" />
     <Compile Include="Assets\Scripts\Manager.cs" />
     <Compile Include="Assets\Scripts\Music.cs" />
+    <Compile Include="Assets\Scripts\OptimizeGame.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\PlayerPicker.cs" />
     <Compile Include="Assets\Scripts\Winning.cs" />

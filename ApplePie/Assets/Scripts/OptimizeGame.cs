@@ -1,0 +1,33 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class OptimizeGame : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    public void Optimize(float level)
+    {
+        switch ((int)level)
+        {
+            case 0:
+                QualitySettings.SetQualityLevel(0);
+                break;
+            case 1:
+                QualitySettings.SetQualityLevel(1);
+                break;
+            case 2:
+                QualitySettings.SetQualityLevel(2);
+                break;
+        }
+    }
+}

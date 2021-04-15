@@ -169,30 +169,30 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("Pressed appel");
         RaycastHit[] hits;
-        hits = Physics.SphereCastAll(transform.position, 1, transform.up);
+        hits = Physics.SphereCastAll(transform.position, 2, transform.up);
         for (int i = 0; i < hits.Length; i++)
         {
             Debug.Log(hits[i].transform.name);
             if (appleObject)
             {
                 if (hits[i].transform.tag == "BasketBlue")
-                {
-                    Debug.Log("Dropped apple");
+                {   
                     appleObject.transform.SetParent(null);
                     appleObject.transform.position = new Vector3(0, 6, -4.5f);
                     appleObject.GetComponent<Rigidbody>().isKinematic = false;
                     appleObject = null;
-                    Manager.blueScore += 1f;
+                    //appleObject.GetComponent<Apple>().hasLanded = false;
+                    //Manager.blueScore += 1f;
                     return;
                 }
                 if (hits[i].transform.tag == "BasketRed")
                 {
-                    Debug.Log("Dropped apple");
                     appleObject.transform.SetParent(null);
                     appleObject.transform.position = new Vector3(0, 6, -4.5f);
                     appleObject.GetComponent<Rigidbody>().isKinematic = false;
                     appleObject = null;
-                    Manager.redScore += 1f;
+                    //appleObject.GetComponent<Apple>().hasLanded = false;
+                    //Manager.redScore += 1f;
                     return;
                 }
             }
@@ -203,8 +203,9 @@ public class PlayerMovement : MonoBehaviour
                     musicManager.PlayClip("ApplePickedUp",0.4f);
                     appleObject = hits[i].transform.gameObject;
                     appleObject.transform.SetParent(transform);
-                    appleObject.transform.position = transform.position + transform.forward * 1.5f;
+                    appleObject.transform.position = transform.position + transform.forward * 1f + transform.up * 1f;
                     appleObject.GetComponent<Rigidbody>().isKinematic = true;
+                    appleObject.GetComponent<Apple>().hasLanded = false;
                     return;
                 }
                 
