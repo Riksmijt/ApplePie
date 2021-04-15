@@ -187,10 +187,10 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (hits[i].transform.tag == "BasketRed")
                 {
-                    appleObject.transform.SetParent(null);
+                    /*appleObject.transform.SetParent(null);
                     appleObject.transform.position = new Vector3(0, 6, -4.5f);
                     appleObject.GetComponent<Rigidbody>().isKinematic = false;
-                    appleObject = null;
+                   */ appleObject = null;
                     //appleObject.GetComponent<Apple>().hasLanded = false;
                     //Manager.redScore += 1f;
                     return;

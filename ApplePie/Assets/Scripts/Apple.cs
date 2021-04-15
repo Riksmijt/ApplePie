@@ -24,9 +24,21 @@ public class Apple : MonoBehaviour
         }
         if(collision.gameObject.tag == "BasketRed" && !hasLanded) 
         {
+            this.transform.SetParent(null);
+            this.transform.position = new Vector3(0, 6, -4.5f);
+            this.GetComponent<Rigidbody>().isKinematic = false;
             Debug.Log("Hits basket red");
             hasLanded = true;
             Manager.redScore += 1;
+        }
+        if (collision.gameObject.tag == "BasketBlue" && !hasLanded)
+        {
+            this.transform.SetParent(null);
+            this.transform.position = new Vector3(0, 6, -4.5f);
+            this.GetComponent<Rigidbody>().isKinematic = false;
+            Debug.Log("Hits basket red");
+            hasLanded = true;
+            Manager.blueScore += 1;
         }
     }
 }
