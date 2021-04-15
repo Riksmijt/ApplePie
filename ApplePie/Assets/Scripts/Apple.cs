@@ -24,6 +24,7 @@ public class Apple : MonoBehaviour
         }
         if(collision.gameObject.tag == "BasketRed" && !hasLanded) 
         {
+            transform.parent.GetComponent<PlayerMovement>().DropApple();
             this.transform.SetParent(null);
             this.transform.position = new Vector3(0, 6, -4.5f);
             this.GetComponent<Rigidbody>().isKinematic = false;
@@ -33,6 +34,7 @@ public class Apple : MonoBehaviour
         }
         if (collision.gameObject.tag == "BasketBlue" && !hasLanded)
         {
+            transform.parent.GetComponent<PlayerMovement>().DropApple();
             this.transform.SetParent(null);
             this.transform.position = new Vector3(0, 6, -4.5f);
             this.GetComponent<Rigidbody>().isKinematic = false;

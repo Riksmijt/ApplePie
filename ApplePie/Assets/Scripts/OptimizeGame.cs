@@ -17,17 +17,7 @@ public class OptimizeGame : MonoBehaviour
     }
     public void Optimize(float level)
     {
-        switch ((int)level)
-        {
-            case 0:
-                QualitySettings.SetQualityLevel(0);
-                break;
-            case 1:
-                QualitySettings.SetQualityLevel(1);
-                break;
-            case 2:
-                QualitySettings.SetQualityLevel(2);
-                break;
-        }
+        QualitySettings.SetQualityLevel((int)level);
+     
     }
 }
