@@ -16,6 +16,8 @@ TagManager:
   - BasketRed
   - Apple
   - Yard
+  - ArcherButton
+  - BokserButton
   layers:
   - Default
   - TransparentFX

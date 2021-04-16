@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
             playerHealth = 5;
         }
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
-        transform.Rotate(0, rotateInput.x * 1f, 0, Space.World);
+        transform.Rotate(0, rotateInput.x * 7f, 0, Space.World);
         
     }
     IEnumerator StunPlayer()

@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Basket.cs" />
     <Compile Include="Assets\Scripts\Bokser.cs" />
     <Compile Include="Assets\Scripts\BokserAbility.cs" />
+    <Compile Include="Assets\Scripts\ButtonHover.cs" />
     <Compile Include="Assets\Scripts\LoadScene.cs" />
     <Compile Include="Assets\Scripts\Manager.cs" />
     <Compile Include="Assets\Scripts\Music.cs" />
