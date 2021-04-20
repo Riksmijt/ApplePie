@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
             playerHealth = 5;
         }
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
-        transform.Rotate(0, rotateInput.x * 7f, 0, Space.World);
+        transform.Rotate(0, rotateInput.x * 4f, 0, Space.World);
         
     }
     IEnumerator StunPlayer()
@@ -118,7 +118,8 @@ public class PlayerMovement : MonoBehaviour
     {
 
         if (canAttack)
-        { 
+        {
+            musicManager.PlayClip("Hitting", 0.3f);
             RaycastHit[] hits;
             hits = Physics.SphereCastAll(transform.position + transform.forward * 1, 1, transform.up);
             for (int i = 0; i < hits.Length; i++)
@@ -126,7 +127,6 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log(hits[i].transform.name);
                 if (hits[i].collider.tag == "Player" && hits[i].collider.gameObject != gameObject)
                 {
-                    musicManager.PlayClip("Hitting", 0.3f);
                     hits[i].collider.GetComponent<PlayerMovement>().TakeDamage(1,false);
                     StartCoroutine(StartAttackCoolDown());
                     return;
@@ -142,8 +142,8 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDamage(float damage, bool stunHit)
     {
         playerHealth-= damage;
-        
-        if(playerHealth <= 0) 
+        musicManager.PlayClip("Damage", 0.6f);
+        if (playerHealth <= 0) 
         {
             
             

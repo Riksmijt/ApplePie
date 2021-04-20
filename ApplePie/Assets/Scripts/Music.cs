@@ -60,5 +60,10 @@ public class Music : MonoBehaviour
 
 
         }
+       
+    }
+    private void Update()
+    {
+        audioSource.loop = audioSource;
     }
 }
