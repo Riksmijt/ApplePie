@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private GameObject appleObject;
     [SerializeField] private BokserAbilityOne bokserabilityOne;
     [SerializeField] private BokserAbilityTwo bokserabilityTwo;
+    [SerializeField] private Archer archer;
     [SerializeField] private GameObject bokser;
     
 
@@ -76,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
     {
         canMove = movable;
     }
+    
     void Update()
     {
         if (playerHealth <= 0f)
@@ -91,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
  
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * (speed + deltaSpeed) * Time.deltaTime);
         transform.Rotate(0, rotateInput.x * 4f, 0, Space.World);
+        
         if (appleObject)
         {
             appleObject.transform.position = transform.position + transform.forward * 1f + transform.up * 1f;
@@ -134,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            archer.AbilityOne();
             //todo add archer ability here
         }
         
@@ -148,12 +152,13 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            archer.AbilityTwo();
             //todo add archer ability here
         }
     }
     public void OnPunching()
     {
-
+        Debug.Log("isPunching");
         if (canAttack)
         {
             RaycastHit[] hits;
@@ -181,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDamage(float damage, bool stunHit)
     {
         playerHealth-= damage;
-        musicManager.PlayClip("Damage", 0.8f);
+        //musicManager.PlayClip("Damage", 0.8f);
         if (playerHealth <= 0) 
         {
             
@@ -241,28 +246,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             canMove = true;
         }
-       /* if(other.gameObject.tag == "Arrow") 
-        {
-           // other.gameObject.GetComponent<Arrow>().stunArrowHit = true;
-            if(other.gameObject.GetComponent<Arrow>().stunArrowHit == true) 
-            {
-                StartCoroutine(StunPlayer());
-                other.gameObject.GetComponent<Arrow>().stunArrowHit = false;
-            }
-        }*/
-        /*if (other.gameObject.tag == "Player" && isPunching == true && other.gameObject != arm)
-        {
-            Enemy = other.gameObject;
-            musicManager.PlayClip("Damage");
-            if (playerHealth > 0)
-            {
-                playerHealth -= 1;
-                if(playerHealth <= 0)
-                {
-                    
-                }
-            }
-        }*/
+
     }
 
     void OnCollisionExit(Collision other)

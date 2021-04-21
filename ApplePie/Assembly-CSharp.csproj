@@ -67,6 +67,8 @@
     <Compile Include="Assets\Scripts\ActivePlayer.cs" />
     <Compile Include="Assets\Scripts\Apple.cs" />
     <Compile Include="Assets\Scripts\Archer.cs" />
+    <Compile Include="Assets\Scripts\ArcherAbilityOne.cs" />
+    <Compile Include="Assets\Scripts\ArcherAblilityTwo.cs" />
     <Compile Include="Assets\Scripts\Arrow.cs" />
     <Compile Include="Assets\Scripts\Basket.cs" />
     <Compile Include="Assets\Scripts\Bokser.cs" />

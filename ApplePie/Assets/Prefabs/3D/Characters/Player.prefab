@@ -191,8 +191,8 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/DualShock4GamepadHID/buttonSouth,/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1826791298694606003}
-        m_MethodName: 
+      - m_Target: {fileID: 8929555580586744444}
+        m_MethodName: OnPunching
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -220,7 +220,18 @@ MonoBehaviour:
     m_ActionId: 08055ae3-217d-4cd1-866f-4e997a5c7192
     m_ActionName: Player/Rotating[/DualShock4GamepadHID/rightStick,/XInputControllerWindows/rightStick]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8217714228368945073}
+        m_MethodName: OnArrowShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 63199902-4131-455b-931b-4101b5b01e0b
     m_ActionName: Player/ArrowShooting[/DualShock4GamepadHID/leftTrigger,/XInputControllerWindows/leftTrigger]
   - m_PersistentCalls:
@@ -296,6 +307,7 @@ MonoBehaviour:
   playerHealth: 0
   bokserabilityOne: {fileID: 5767591619729523422}
   bokserabilityTwo: {fileID: 4620962269186325213}
+  archer: {fileID: 8217714228368945073}
   bokser: {fileID: 4282531235582227817}
   arm: {fileID: 6969556179565815270}
   speed: 7
@@ -914,6 +926,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18dd95058626ae342ba76f68ad1d1aa3, type: 3}
+--- !u!1 &4282531235582227817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8418875837398956751, guid: 18dd95058626ae342ba76f68ad1d1aa3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5745257768125468582}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4620962269186325213 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1124691764544370043, guid: 18dd95058626ae342ba76f68ad1d1aa3,
@@ -953,12 +971,6 @@ MonoBehaviour:
 --- !u!4 &3469262464394522579 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9195798847362228341, guid: 18dd95058626ae342ba76f68ad1d1aa3,
-    type: 3}
-  m_PrefabInstance: {fileID: 5745257768125468582}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4282531235582227817 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8418875837398956751, guid: 18dd95058626ae342ba76f68ad1d1aa3,
     type: 3}
   m_PrefabInstance: {fileID: 5745257768125468582}
   m_PrefabAsset: {fileID: 0}
@@ -1074,6 +1086,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7200109155480823375}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8217714228368945073 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1288243538154375678, guid: 4ec3759d2ae0dd340ab4b3f3a9380802,
+    type: 3}
+  m_PrefabInstance: {fileID: 7200109155480823375}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8217714228368945078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70984237d322b514ab2ed2f1eda945e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8217714228368945074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1288243538154375677, guid: 4ec3759d2ae0dd340ab4b3f3a9380802,

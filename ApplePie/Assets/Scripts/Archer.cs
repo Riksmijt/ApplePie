@@ -58,7 +58,7 @@ public class Archer : MonoBehaviour
     {
         if (abilityOneTimer <= 0)
         {
-            musicManager.PlayClip("ArcherFireArrow", 1f);
+           // musicManager.PlayClip("ArcherFireArrow", 1f);
             GameObject newArrow = Instantiate(arrow, transform.position + transform.forward * 2, transform.rotation);
             newArrow.GetComponent<Arrow>().SetArcher(this);
             newArrow.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
@@ -73,7 +73,7 @@ public class Archer : MonoBehaviour
     {
         if (abilityTwoTimer <= 0)
         {
-            musicManager.PlayClip("ArcherStunArrow", 1f);
+            //musicManager.PlayClip("ArcherStunArrow", 1f);
             GameObject newArrow = Instantiate(arrow, transform.position + transform.forward * 2, transform.rotation);
             newArrow.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
             newArrow.GetComponent<MeshRenderer>().material.color = Color.green;
