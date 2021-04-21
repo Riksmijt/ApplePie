@@ -4,29 +4,10 @@ using UnityEngine;
 
 public class ActivePlayer : MonoBehaviour
 {
-    public bool bokserSpawned;
-    public bool archerSpawned;
-    [SerializeField] private GameObject Bokser;
-    [SerializeField] private GameObject Archer;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject firstButton;
+    private void Start()
     {
-      
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (PlayerPicker.loadBokser)
-        {
-            Bokser.SetActive(true);
-            Archer.SetActive(false);
-        }
-        if (PlayerPicker.loadArcher)
-        {
-            Bokser.SetActive(false);
-            Archer.SetActive(true);
-        }
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(firstButton);
     }
 }
 

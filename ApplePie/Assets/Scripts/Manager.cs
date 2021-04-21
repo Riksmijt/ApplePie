@@ -51,10 +51,7 @@ public class Manager : MonoBehaviour
         }
         Debug.Log(Gamepad.current);
         playermovement = playerInput.gameObject.GetComponent<PlayerMovement>();
-        if(playermovement.index == 0) 
-        {
 
-        }
     }
     void Update()
     {

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerPicker : MonoBehaviour
 {
-    public static bool loadArcher;
+   /* public static bool loadArcher;
     public static bool loadBokser;
     [SerializeField] private int scene;
     [SerializeField] private GameObject player;
@@ -23,6 +23,6 @@ public class PlayerPicker : MonoBehaviour
         loadBokser = true;
         SceneManager.LoadScene(scene);
        
-    }
+    }*/
     
 }
