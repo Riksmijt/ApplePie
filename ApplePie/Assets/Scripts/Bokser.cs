@@ -16,10 +16,12 @@ public class Bokser : MonoBehaviour
     private bool ab1Active;
     private bool isDoingAb1;
     private bool isDoingAb2;
+    private Music musicManager;
  
     // Start is called before the first frame update
     void Start()
     {
+        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<Music>();
         ab1.SetActive(false);
         ab2.SetActive(false);
         isDoingAb1 = false;
@@ -28,7 +30,7 @@ public class Bokser : MonoBehaviour
 
     void Update()
     {
-        if (isDoingAb1)
+       /* if (isDoingAb1)
         {
             coolDownTimeAb1 += 1 * Time.deltaTime;
             canStartAb1 += 1 * Time.deltaTime;
@@ -60,24 +62,8 @@ public class Bokser : MonoBehaviour
         {
             isDoingAb2 = false;
             canStartAb2 = 0;
-        }
+        }*/
     }
 
-    public void AbilityOne()
-    {
-        if (!isDoingAb1)
-        {
-            ab1.SetActive(true);
-            isDoingAb1 = true;
-        }
-    }
-
-    public void AbbilitieTwo()
-    {
-        if (!isDoingAb2)
-        {
-            ab2.SetActive(true);
-            isDoingAb2 = true;
-        }
-    }
+   
 }

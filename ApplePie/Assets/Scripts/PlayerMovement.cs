@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canJump;
     public bool canMove;
     private bool canAttack = true;
+    private bool hasApple;
 
     private int slappingStarmina;
 
@@ -25,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     public float playerHealth;
     public static bool isSpawned;
     private GameObject appleObject;
+    [SerializeField] private BokserAbilityOne abilityOne;
+    [SerializeField] private BokserAbilityTwo abilityTwo;
 
     [SerializeField] private GameObject arm;
     private GameObject Enemy;
@@ -78,9 +81,14 @@ public class PlayerMovement : MonoBehaviour
             timer = 0;
             playerHealth = 5;
         }
-        transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
+        float deltaSpeed = (hasApple) ? -3f : 0f;
+ 
+        transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * (speed + deltaSpeed) * Time.deltaTime);
         transform.Rotate(0, rotateInput.x * 4f, 0, Space.World);
-        
+        if (appleObject)
+        {
+            appleObject.transform.position = transform.position + transform.forward * 1f + transform.up * 1f;
+        }
     }
     IEnumerator StunPlayer()
     {
@@ -97,7 +105,6 @@ public class PlayerMovement : MonoBehaviour
             movementInput = ctx.ReadValue<Vector2>() * 0.7f;
         }
     }
-
     public void OnRotate(InputAction.CallbackContext ctx)
     {
         rotateInput = ctx.ReadValue<Vector2>();
@@ -113,13 +120,20 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
         }
     }
+    public void AbilityOne(InputAction.CallbackContext ctx)
+    {
+        abilityOne.ActivateAbility();
+    }
 
+    public void AbbilitieTwo(InputAction.CallbackContext ctx)
+    {
+        abilityTwo.ActivateAbility();
+    }
     public void OnPunching()
     {
 
         if (canAttack)
         {
-            musicManager.PlayClip("Hitting", 0.3f);
             RaycastHit[] hits;
             hits = Physics.SphereCastAll(transform.position + transform.forward * 1, 1, transform.up);
             for (int i = 0; i < hits.Length; i++)
@@ -138,11 +152,14 @@ public class PlayerMovement : MonoBehaviour
     { 
        
     }
-
+    public void SetHasApple(bool hasApple)
+    {
+        this.hasApple = hasApple;
+    }
     public void TakeDamage(float damage, bool stunHit)
     {
         playerHealth-= damage;
-        musicManager.PlayClip("Damage", 0.6f);
+        musicManager.PlayClip("Damage", 0.8f);
         if (playerHealth <= 0) 
         {
             
@@ -202,8 +219,9 @@ public class PlayerMovement : MonoBehaviour
                 {
                     musicManager.PlayClip("ApplePickedUp",0.4f);
                     appleObject = hits[i].transform.gameObject;
-                    appleObject.transform.SetParent(transform);
-                    appleObject.transform.position = transform.position + transform.forward * 1f + transform.up * 1f;
+                    SetHasApple(true);
+                    //appleObject.transform.localScale = new Vector3(0.4f,0.4f,0.4f);
+                    appleObject.GetComponent<Apple>().SetPlayerMovement(this);
                     appleObject.GetComponent<Rigidbody>().isKinematic = true;
                     appleObject.GetComponent<Apple>().hasLanded = false;
                     return;

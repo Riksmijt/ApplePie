@@ -8,11 +8,11 @@ public class BokserAbility : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.tag == "Bokser")
+        if(collision.transform.tag == "Player")
         {
             collision.transform.GetComponent<Rigidbody>().AddForce(Vector3.back * force);
-            PlayerMovement playerMovement = GetComponent<PlayerMovement>();
-            playerMovement.playerHealth -= 1;
+            collision.transform.GetComponent<PlayerMovement>().TakeDamage(1,false);
+            
         }
     }
 }

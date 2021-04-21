@@ -18,7 +18,7 @@ public class Arrow : MonoBehaviour
         if(collision.transform.tag == "Player")
         {
             if (archer.shootingAbilityOne)
-            {
+            { 
                 collision.gameObject.GetComponent<PlayerMovement>().TakeDamage(2,false);
                 return;
             }

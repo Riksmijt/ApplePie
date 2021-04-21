@@ -59,7 +59,7 @@
                     "id": "0b222c02-6020-4ca2-852d-8f94afd0fda6",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "Ab_2",
@@ -67,7 +67,7 @@
                     "id": "a16adcc7-ef75-465f-acf1-0b1d566e169d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "Dodging",
