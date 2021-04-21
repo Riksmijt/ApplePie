@@ -26,10 +26,8 @@ public class PlayerMovement : MonoBehaviour
     public float playerHealth;
     public static bool isSpawned;
     private GameObject appleObject;
-    [SerializeField] private BokserAbilityOne bokserabilityOne;
-    [SerializeField] private BokserAbilityTwo bokserabilityTwo;
-    [SerializeField] private GameObject bokser;
-    
+    [SerializeField] private BokserAbilityOne abilityOne;
+    [SerializeField] private BokserAbilityTwo abilityTwo;
 
     [SerializeField] private GameObject arm;
     private GameObject Enemy;
@@ -49,7 +47,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        canMove = true;
         selfRigidbody = GetComponent<Rigidbody>();
         musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<Music>();
         playerHealth = 5;
@@ -72,10 +69,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("works");
     }
-    public void ToggleCanMove(bool movable)
-    {
-        canMove = movable;
-    }
+
     void Update()
     {
         if (playerHealth <= 0f)
@@ -128,28 +122,12 @@ public class PlayerMovement : MonoBehaviour
     }
     public void AbilityOne(InputAction.CallbackContext ctx)
     {
-        if (bokser.activeInHierarchy)
-        {
-            bokserabilityOne.ActivateAbility();
-        }
-        else
-        {
-            //todo add archer ability here
-        }
-        
+        abilityOne.ActivateAbility();
     }
 
     public void AbbilitieTwo(InputAction.CallbackContext ctx)
     {
-        
-        if (bokser.activeInHierarchy)
-        {
-            bokserabilityTwo.ActivateAbility();
-        }
-        else
-        {
-            //todo add archer ability here
-        }
+        abilityTwo.ActivateAbility();
     }
     public void OnPunching()
     {
@@ -211,8 +189,31 @@ public class PlayerMovement : MonoBehaviour
         hits = Physics.SphereCastAll(transform.position, 2, transform.up);
         for (int i = 0; i < hits.Length; i++)
         {
-   
-            if(!appleObject)
+            Debug.Log(hits[i].transform.name);
+            if (appleObject)
+            {
+                if (hits[i].transform.tag == "BasketBlue")
+                {   
+                    /*appleObject.transform.SetParent(null);
+                    appleObject.transform.position = new Vector3(0, 6, -4.5f);
+                    appleObject.GetComponent<Rigidbody>().isKinematic = false;
+                    appleObject = null;*/
+                    //appleObject.GetComponent<Apple>().hasLanded = false;
+                    //Manager.blueScore += 1f;
+                    return;
+                }
+                if (hits[i].transform.tag == "BasketRed")
+                {
+                    /*appleObject.transform.SetParent(null);
+                    appleObject.transform.position = new Vector3(0, 6, -4.5f);
+                    appleObject.GetComponent<Rigidbody>().isKinematic = false;
+                   *///appleObject = null;
+                    //appleObject.GetComponent<Apple>().hasLanded = false;
+                    //Manager.redScore += 1f;
+                    return;
+                }
+            }
+            else
             {
                 if (hits[i].transform.tag == "Apple")
                 {
@@ -233,7 +234,6 @@ public class PlayerMovement : MonoBehaviour
     {
         appleObject = null;
     }
-   
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Ground")

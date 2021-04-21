@@ -54,7 +54,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "AblilityOne",
+                    "name": "Ab_1",
                     "type": "Button",
                     "id": "0b222c02-6020-4ca2-852d-8f94afd0fda6",
                     "expectedControlType": "Button",
@@ -62,7 +62,7 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "AblilityTwo",
+                    "name": "Ab_2",
                     "type": "Button",
                     "id": "a16adcc7-ef75-465f-acf1-0b1d566e169d",
                     "expectedControlType": "Button",
@@ -160,7 +160,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AblilityOne",
+                    "action": "Ab_1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -171,7 +171,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AblilityTwo",
+                    "action": "Ab_2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
