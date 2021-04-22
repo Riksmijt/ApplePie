@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private GameObject appleObject;
     [SerializeField] private BokserAbilityOne abilityOne;
     [SerializeField] private BokserAbilityTwo abilityTwo;
+    private Color originalColor;
 
     [SerializeField] private GameObject arm;
     private GameObject Enemy;
@@ -47,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        originalColor = GetComponent<MeshRenderer>().material.color;
         selfRigidbody = GetComponent<Rigidbody>();
         musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<Music>();
         playerHealth = 5;
@@ -156,10 +158,17 @@ public class PlayerMovement : MonoBehaviour
     {
         this.hasApple = hasApple;
     }
+    IEnumerator ChangeColorOnDamage()
+    {
+        GetComponent<MeshRenderer>().material.color = Color.red;
+        yield return new WaitForSeconds(1);
+        GetComponent<MeshRenderer>().material.color = originalColor;
+    }
     public void TakeDamage(float damage, bool stunHit)
     {
         playerHealth-= damage;
         musicManager.PlayClip("Damage", 0.8f);
+        StartCoroutine(ChangeColorOnDamage());
         if (playerHealth <= 0) 
         {
             
@@ -192,32 +201,12 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log(hits[i].transform.name);
             if (appleObject)
             {
-                if (hits[i].transform.tag == "BasketBlue")
-                {   
-                    /*appleObject.transform.SetParent(null);
-                    appleObject.transform.position = new Vector3(0, 6, -4.5f);
-                    appleObject.GetComponent<Rigidbody>().isKinematic = false;
-                    appleObject = null;*/
-                    //appleObject.GetComponent<Apple>().hasLanded = false;
-                    //Manager.blueScore += 1f;
-                    return;
-                }
-                if (hits[i].transform.tag == "BasketRed")
-                {
-                    /*appleObject.transform.SetParent(null);
-                    appleObject.transform.position = new Vector3(0, 6, -4.5f);
-                    appleObject.GetComponent<Rigidbody>().isKinematic = false;
-                   *///appleObject = null;
-                    //appleObject.GetComponent<Apple>().hasLanded = false;
-                    //Manager.redScore += 1f;
-                    return;
-                }
             }
             else
             {
                 if (hits[i].transform.tag == "Apple")
                 {
-                    musicManager.PlayClip("ApplePickedUp",0.4f);
+                    musicManager.PlayClip("ApplePickedUp", 0.4f);
                     appleObject = hits[i].transform.gameObject;
                     SetHasApple(true);
                     //appleObject.transform.localScale = new Vector3(0.4f,0.4f,0.4f);
@@ -226,7 +215,7 @@ public class PlayerMovement : MonoBehaviour
                     appleObject.GetComponent<Apple>().hasLanded = false;
                     return;
                 }
-                
+
             }
         }
     }
@@ -241,28 +230,6 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             canMove = true;
         }
-       /* if(other.gameObject.tag == "Arrow") 
-        {
-           // other.gameObject.GetComponent<Arrow>().stunArrowHit = true;
-            if(other.gameObject.GetComponent<Arrow>().stunArrowHit == true) 
-            {
-                StartCoroutine(StunPlayer());
-                other.gameObject.GetComponent<Arrow>().stunArrowHit = false;
-            }
-        }*/
-        /*if (other.gameObject.tag == "Player" && isPunching == true && other.gameObject != arm)
-        {
-            Enemy = other.gameObject;
-            musicManager.PlayClip("Damage");
-            if (playerHealth > 0)
-            {
-                playerHealth -= 1;
-                if(playerHealth <= 0)
-                {
-                    
-                }
-            }
-        }*/
     }
 
     void OnCollisionExit(Collision other)

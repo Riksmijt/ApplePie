@@ -42,12 +42,12 @@ public class Manager : MonoBehaviour
         if(playerInput.playerIndex == 1)
         {
             player1 = playerInput.gameObject;
-            //player1.GetComponent<MeshRenderer>().material.color = Color.red;
+            player1.GetComponent<MeshRenderer>().material.color = Color.yellow;
         }
         if(playerInput.playerIndex == 2)
         {
             player2 = playerInput.gameObject;
-            //player2.GetComponent<MeshRenderer>().material.color = Color.blue;
+            player2.GetComponent<MeshRenderer>().material.color = Color.blue;
         }
         Debug.Log(Gamepad.current);
         playermovement = playerInput.gameObject.GetComponent<PlayerMovement>();
