@@ -96,8 +96,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 6469728560776534065}
     m_Modifications:
     - target: {fileID: 414511254, guid: 18dd95058626ae342ba76f68ad1d1aa3, type: 3}
+      propertyPath: m_Name
+      value: ForceField
+      objectReference: {fileID: 0}
+    - target: {fileID: 414511254, guid: 18dd95058626ae342ba76f68ad1d1aa3, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 540609923, guid: 18dd95058626ae342ba76f68ad1d1aa3, type: 3}
+      propertyPath: m_Name
+      value: ForceArrow
       objectReference: {fileID: 0}
     - target: {fileID: 540609923, guid: 18dd95058626ae342ba76f68ad1d1aa3, type: 3}
       propertyPath: m_IsActive
@@ -153,6 +161,11 @@ PrefabInstance:
       propertyPath: abilityTwo
       value: 
       objectReference: {fileID: 4620962269186325213}
+    - target: {fileID: 2283847851326016888, guid: 18dd95058626ae342ba76f68ad1d1aa3,
+        type: 3}
+      propertyPath: forceField
+      value: 
+      objectReference: {fileID: 5745257767729954608}
     - target: {fileID: 8418875837398956751, guid: 18dd95058626ae342ba76f68ad1d1aa3,
         type: 3}
       propertyPath: m_Name
@@ -239,6 +252,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a61d02316fe05e46ba30b2a5d293872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5745257767729954608 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 414511254, guid: 18dd95058626ae342ba76f68ad1d1aa3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5745257768125468582}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5767591619729523422 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2283847851326016888, guid: 18dd95058626ae342ba76f68ad1d1aa3,
