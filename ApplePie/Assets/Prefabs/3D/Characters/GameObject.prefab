@@ -88,6 +88,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5232289929455568913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5745257767729954608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3246865a982b1b4ebae37b1d72fe0da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 6
 --- !u!1001 &5745257768125468582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -129,7 +142,7 @@ PrefabInstance:
     - target: {fileID: 1124691764544370043, guid: 18dd95058626ae342ba76f68ad1d1aa3,
         type: 3}
       propertyPath: cooldownTimer
-      value: 4
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1829022538981439174, guid: 18dd95058626ae342ba76f68ad1d1aa3,
         type: 3}
