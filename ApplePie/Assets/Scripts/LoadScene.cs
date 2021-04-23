@@ -16,8 +16,6 @@ public class LoadScene : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        //image.gameObject.SetActive(false);
-        //slider.gameObject.SetActive(false);
         startButton.gameObject.SetActive(true);
         settingsButton.gameObject.SetActive(true);
     }
@@ -26,18 +24,4 @@ public class LoadScene : MonoBehaviour
         Debug.Log("Works");
         SceneManager.LoadScene(scene);
     }
-    /*public void LoadSetting()
-    {
-        image.gameObject.SetActive(true);
-        slider.gameObject.SetActive(true);
-        startButton.gameObject.SetActive(false);
-        settingsButton.gameObject.SetActive(false);
-    }
-    public void GoBackToMenu()
-    {
-        image.gameObject.SetActive(false);
-        slider.gameObject.SetActive(false);
-        startButton.gameObject.SetActive(true);
-        settingsButton.gameObject.SetActive(true);
-    }*/
 }
