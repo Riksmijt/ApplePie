@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private GameObject appleObject;
     [SerializeField] private BokserAbilityOne abilityOne;
     [SerializeField] private BokserAbilityTwo abilityTwo;
+    [SerializeField] private Material playerMaterial;
     private Color originalColor;
 
     [SerializeField] private GameObject arm;
@@ -86,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
         float deltaSpeed = (hasApple) ? -3f : 0f;
  
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * (speed + deltaSpeed) * Time.deltaTime);
-        transform.Rotate(0, rotateInput.x * 4f, 0, Space.World);
+        transform.Rotate(0, rotateInput.x * 3f, 0, Space.World);
         if (appleObject)
         {
             appleObject.transform.position = transform.position + transform.forward * 1f + transform.up * 1f;
@@ -105,11 +106,27 @@ public class PlayerMovement : MonoBehaviour
         if (canMove)
         {
             movementInput = ctx.ReadValue<Vector2>() * 0.7f;
+            
         }
     }
     public void OnRotate(InputAction.CallbackContext ctx)
     {
-        rotateInput = ctx.ReadValue<Vector2>();
+        Vector2 rotationCap = ctx.ReadValue<Vector2>();
+        if(rotationCap.x >= 0.1)
+        {
+            rotateInput = new Vector2(0.1f,rotationCap.y);
+        }
+        else if(rotationCap.x <= -0.1)
+        {
+            rotateInput = new Vector2(-0.1f,rotationCap.y);
+        }
+        else
+        {
+            rotateInput = rotationCap;
+        }
+       // rotateInput = ctx.ReadValue<Vector2>();
+        Debug.Log(rotateInput);
+        
     }
 
     public void OnJump()
@@ -160,9 +177,11 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator ChangeColorOnDamage()
     {
-        GetComponent<MeshRenderer>().material.color = Color.red;
+        //GetComponent<MeshRenderer>().material.color = Color.red;
+        playerMaterial.color = Color.red;
         yield return new WaitForSeconds(1);
-        GetComponent<MeshRenderer>().material.color = originalColor;
+        //GetComponent<MeshRenderer>().material.color = originalColor;
+        playerMaterial.color = originalColor;
     }
     public void TakeDamage(float damage, bool stunHit)
     {
