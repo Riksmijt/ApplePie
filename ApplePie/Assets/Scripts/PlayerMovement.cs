@@ -28,8 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private GameObject appleObject;
     [SerializeField] private BokserAbilityOne abilityOne;
     [SerializeField] private BokserAbilityTwo abilityTwo;
-    [SerializeField] private Material playerMaterial;
-    private Color originalColor;
+    private MeshRenderer playerRenderer;
 
     [SerializeField] private GameObject arm;
     private GameObject Enemy;
@@ -49,7 +48,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        originalColor = GetComponent<MeshRenderer>().material.color;
+        //originalColor = GetComponent<MeshRenderer>().material.color;
+        playerRenderer = gameObject.GetComponent<MeshRenderer>();
         selfRigidbody = GetComponent<Rigidbody>();
         musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<Music>();
         playerHealth = 5;
@@ -106,27 +106,23 @@ public class PlayerMovement : MonoBehaviour
         if (canMove)
         {
             movementInput = ctx.ReadValue<Vector2>() * 0.7f;
-            
         }
     }
     public void OnRotate(InputAction.CallbackContext ctx)
     {
         Vector2 rotationCap = ctx.ReadValue<Vector2>();
-        if(rotationCap.x >= 0.1)
+        if (rotationCap.x >= 0.1)
         {
-            rotateInput = new Vector2(0.1f,rotationCap.y);
+            rotateInput = new Vector2(0.1f, rotationCap.y);
         }
-        else if(rotationCap.x <= -0.1)
+        else if (rotationCap.x <= -0.1)
         {
-            rotateInput = new Vector2(-0.1f,rotationCap.y);
+            rotateInput = new Vector2(-0.1f, rotationCap.y);
         }
         else
         {
             rotateInput = rotationCap;
         }
-       // rotateInput = ctx.ReadValue<Vector2>();
-        Debug.Log(rotateInput);
-        
     }
 
     public void OnJump()
@@ -175,13 +171,30 @@ public class PlayerMovement : MonoBehaviour
     {
         this.hasApple = hasApple;
     }
+    
     IEnumerator ChangeColorOnDamage()
     {
-        //GetComponent<MeshRenderer>().material.color = Color.red;
-        playerMaterial.color = Color.red;
+        Material[] materials = playerRenderer.materials;
+        Color originalColor;
+        if (PlayerPicker.loadArcher)
+        {
+            originalColor = materials[0].color;
+            materials[0].color = Color.red;
+        }
+        else
+        {
+            originalColor = materials[0].color;
+            materials[0].color = Color.red;
+        }
         yield return new WaitForSeconds(1);
-        //GetComponent<MeshRenderer>().material.color = originalColor;
-        playerMaterial.color = originalColor;
+        if (PlayerPicker.loadArcher)
+        {
+            materials[0].color = originalColor;
+        }
+        else
+        {
+            materials[0].color = originalColor;
+        }
     }
     public void TakeDamage(float damage, bool stunHit)
     {

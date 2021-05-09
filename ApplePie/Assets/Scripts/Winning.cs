@@ -23,7 +23,7 @@ public class Winning : MonoBehaviour
         }
         if(Manager.redScore >= 5) 
         {
-            winText.text = "Red wins";
+            winText.text = "Yellow wins";
         }
     }
     public void LoadScene(int sceneNumber)
