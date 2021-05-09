@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BokserAbility : MonoBehaviour
 {
@@ -8,7 +6,7 @@ public class BokserAbility : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.tag == "Player")
+        if (collision.transform.tag == "Player")
         {
             collision.transform.GetComponent<Rigidbody>().AddForce(Vector3.back * force);
             collision.transform.GetComponent<PlayerMovement>().TakeDamage(1,false);

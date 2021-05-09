@@ -10,11 +10,9 @@ public class ButtonHover : MonoBehaviour
     [SerializeField] private GameObject archer;
     [SerializeField] private GameObject bokser;
     [SerializeField] private EventSystem eventSystem;
-    GameObject lastSelectedObject;
-
     private void Update()
     {
-        if(eventSystem.currentSelectedGameObject.tag == "ArcherButton") 
+        if (eventSystem.currentSelectedGameObject.tag == "ArcherButton") 
         {
             archer.SetActive(true);
             bokser.SetActive(false);

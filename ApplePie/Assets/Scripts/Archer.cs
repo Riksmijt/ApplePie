@@ -1,13 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Archer : MonoBehaviour
 {
     [SerializeField] private GameObject arrow;
-    private bool isShooting;
-    private float timer;
     private float abilityOneTimer;
     private float abilityTwoTimer;
     private int amountArrows;
@@ -19,8 +15,6 @@ public class Archer : MonoBehaviour
     void Start()
     {
         musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<Music>();
-        isShooting = false;
-        timer = 0;
         amountArrows = 2;
         shotTimer = 3;
         abilityOneTimer = 9;
@@ -43,7 +37,6 @@ public class Archer : MonoBehaviour
             newArrow.GetComponent<Arrow>().SetArcher(this);
             musicManager.PlayClip("Shooting",1.5f);
             Destroy(newArrow, 2);
-            isShooting = true;
             shootingAbilityOne = false;
             shootingAbilityTwo = false;
             amountArrows -= 1;

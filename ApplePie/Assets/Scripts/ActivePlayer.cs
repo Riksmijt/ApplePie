@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ActivePlayer : MonoBehaviour
 {
@@ -8,13 +6,6 @@ public class ActivePlayer : MonoBehaviour
     public bool archerSpawned;
     [SerializeField] private GameObject Bokser;
     [SerializeField] private GameObject Archer;
-    // Start is called before the first frame update
-    void Start()
-    {
-      
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (PlayerPicker.loadBokser)

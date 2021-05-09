@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BokserAbilityOne : MonoBehaviour
 {
@@ -15,7 +13,6 @@ public class BokserAbilityOne : MonoBehaviour
         {
             isDoingAbility = true;
             timer = cooldownTimer;
-            Debug.Log("Activated ability one");
         }
        
     }
@@ -27,7 +24,7 @@ public class BokserAbilityOne : MonoBehaviour
             forceField.SetActive(true);
             abilityTimer -= 1 * Time.deltaTime;
         }
-        if(abilityTimer <= 0)
+        if (abilityTimer <= 0)
         {
             forceField.SetActive(false);
             isDoingAbility = false;

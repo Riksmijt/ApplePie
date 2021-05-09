@@ -57,8 +57,6 @@ public class Music : MonoBehaviour
             case "PointAdded":
                 audioSource.PlayOneShot(pointAdded, volume);
                 break;
-
-
         }
        
     }

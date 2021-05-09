@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
     Archer archer;
-    PlayerMovement playerMovement;
     public bool stunArrowHit = false;
     private void OnCollisionEnter(Collision collision)
     {
@@ -15,7 +12,7 @@ public class Arrow : MonoBehaviour
                 DoDamage(collision.gameObject, 1);
                 break;
         }
-        if(collision.transform.tag == "Player")
+        if (collision.transform.tag == "Player")
         {
             if (archer.shootingAbilityOne)
             { 
@@ -24,17 +21,13 @@ public class Arrow : MonoBehaviour
             }
             if (archer.shootingAbilityTwo)
             {
-                collision.gameObject.GetComponent<PlayerMovement>().TakeDamage(1,true);
+                collision.gameObject.GetComponent<PlayerMovement>().TakeDamage(1, true);
 
                 stunArrowHit = true;
                 return;
             }
-
             collision.gameObject.GetComponent<PlayerMovement>().TakeDamage(1,false);
-
         }
-        
-        
     }
 
     private void DoDamage(GameObject target, float damage)

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
+﻿using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerPicker : MonoBehaviour
@@ -10,7 +7,6 @@ public class PlayerPicker : MonoBehaviour
     public static bool loadBokser;
     [SerializeField] private int scene;
     [SerializeField] private GameObject player;
-    // Start is called before the first frame update
     public void LoadArcher()
     {
         loadArcher = true;
@@ -22,7 +18,5 @@ public class PlayerPicker : MonoBehaviour
         loadArcher = false;
         loadBokser = true;
         SceneManager.LoadScene(scene);
-       
     }
-    
 }

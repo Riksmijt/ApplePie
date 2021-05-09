@@ -5,27 +5,21 @@ using UnityEngine;
 public class Apple : MonoBehaviour
 {
     public bool hasLanded;
+    public bool applePickedUp = false;
     private PlayerMovement currentPlayer;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Yard") 
+        if (collision.gameObject.tag == "Yard") 
         {
             this.transform.position = new Vector3(0, 7, 0);
             currentPlayer.SetHasApple(false);
             currentPlayer = null;
         }
-        if(collision.gameObject.tag == "BasketRed" && !hasLanded) 
+        if (collision.gameObject.tag == "Ground")
+        {
+            applePickedUp = false;
+        }
+        if (collision.gameObject.tag == "BasketRed" && !hasLanded) 
         {
             currentPlayer.DropApple();
             currentPlayer.SetHasApple(false);
@@ -48,6 +42,13 @@ public class Apple : MonoBehaviour
             hasLanded = true;
             currentPlayer = null;
             Manager.blueScore += 1;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.transform.tag == "Ground") 
+        {
+            applePickedUp = true;
         }
     }
     public void SetPlayerMovement(PlayerMovement player)

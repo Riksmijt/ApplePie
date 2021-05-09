@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
@@ -13,7 +10,6 @@ public class LoadScene : MonoBehaviour
     [SerializeField] private Button goBackButton;
     [SerializeField] private Button startButton;
     [SerializeField] private Button settingsButton;
-    // Start is called before the first frame update
     private void Start()
     {
         startButton.gameObject.SetActive(true);
@@ -21,7 +17,6 @@ public class LoadScene : MonoBehaviour
     }
     public void Load()
     {
-        Debug.Log("Works");
         SceneManager.LoadScene(scene);
     }
 }

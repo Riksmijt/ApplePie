@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BokserAbilityTwo : MonoBehaviour
 {
@@ -12,9 +10,7 @@ public class BokserAbilityTwo : MonoBehaviour
         if (timer <= 0)
         {
             player.GetComponent<PlayerMovement>().playerHealth += 2;
-            Debug.Log(player.GetComponent<PlayerMovement>().playerHealth);
             timer = cooldownTimer;
-            Debug.Log("Activated ability two");
         }
 
     }
