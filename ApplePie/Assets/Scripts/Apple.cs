@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Apple : MonoBehaviour
 {
-    public bool hasLanded;
-    public bool applePickedUp = false;
+    private bool hasLanded;
+    private bool applePickedUp = false;
     private PlayerMovement currentPlayer;
+
+    public bool HasLanded { get => hasLanded; set => hasLanded = value; }
+    public bool ApplePickedUp { get => applePickedUp; set => applePickedUp = value; }
+
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Yard") 
@@ -17,29 +21,27 @@ public class Apple : MonoBehaviour
         }
         if (collision.gameObject.tag == "Ground")
         {
-            applePickedUp = false;
+            ApplePickedUp = false;
         }
-        if (collision.gameObject.tag == "BasketRed" && !hasLanded) 
+        if (collision.gameObject.tag == "BasketRed" && !HasLanded) 
         {
             currentPlayer.DropApple();
             currentPlayer.SetHasApple(false);
             this.transform.SetParent(null);
             this.transform.position = new Vector3(0, 6, -4.5f);
             this.GetComponent<Rigidbody>().isKinematic = false;
-            Debug.Log("Hits basket red");
-            hasLanded = true;
+            HasLanded = true;
             currentPlayer = null;
             Manager.redScore += 1;
         }
-        if (collision.gameObject.tag == "BasketBlue" && !hasLanded)
+        if (collision.gameObject.tag == "BasketBlue" && !HasLanded)
         {
             currentPlayer.DropApple();
             currentPlayer.SetHasApple(false);
             this.transform.SetParent(null);
             this.transform.position = new Vector3(0, 6, -4.5f);
             this.GetComponent<Rigidbody>().isKinematic = false;
-            Debug.Log("Hits basket red");
-            hasLanded = true;
+            HasLanded = true;
             currentPlayer = null;
             Manager.blueScore += 1;
         }
@@ -48,7 +50,7 @@ public class Apple : MonoBehaviour
     {
         if (collision.transform.tag == "Ground") 
         {
-            applePickedUp = true;
+            ApplePickedUp = true;
         }
     }
     public void SetPlayerMovement(PlayerMovement player)

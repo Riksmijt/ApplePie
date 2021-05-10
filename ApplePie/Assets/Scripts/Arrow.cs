@@ -3,7 +3,6 @@
 public class Arrow : MonoBehaviour
 {
     Archer archer;
-    public bool stunArrowHit = false;
     private void OnCollisionEnter(Collision collision)
     {
         switch (collision.transform.tag)
@@ -14,16 +13,14 @@ public class Arrow : MonoBehaviour
         }
         if (collision.transform.tag == "Player")
         {
-            if (archer.shootingAbilityOne)
+            if (archer.ShootingAbilityOne)
             { 
                 collision.gameObject.GetComponent<PlayerMovement>().TakeDamage(2,false);
                 return;
             }
-            if (archer.shootingAbilityTwo)
+            if (archer.ShootingAbilityTwo)
             {
                 collision.gameObject.GetComponent<PlayerMovement>().TakeDamage(1, true);
-
-                stunArrowHit = true;
                 return;
             }
             collision.gameObject.GetComponent<PlayerMovement>().TakeDamage(1,false);
@@ -32,7 +29,7 @@ public class Arrow : MonoBehaviour
 
     private void DoDamage(GameObject target, float damage)
     {
-        target.GetComponent<PlayerMovement>().playerHealth -= damage;
+        target.GetComponent<PlayerMovement>().PlayerHealth -= damage;
     }
     public void SetArcher(Archer newArcher)
     {

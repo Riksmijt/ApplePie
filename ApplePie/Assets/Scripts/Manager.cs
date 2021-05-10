@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.InputSystem.Users;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -20,7 +16,6 @@ public class Manager : MonoBehaviour
     [SerializeField] private GameObject archer;
     public static float blueScore;
     public static float redScore;
-    private PlayerMovement playermovement;
     private void Start()
     {
         
@@ -39,11 +34,6 @@ public class Manager : MonoBehaviour
         {
             player2 = playerInput.gameObject;
             player2.GetComponent<MeshRenderer>().material.color = Color.blue;
-        }
-        playermovement = playerInput.gameObject.GetComponent<PlayerMovement>();
-        if (playermovement.index == 0) 
-        {
-
         }
     }
     void Update()

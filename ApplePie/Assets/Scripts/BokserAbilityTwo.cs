@@ -9,7 +9,7 @@ public class BokserAbilityTwo : MonoBehaviour
     {
         if (timer <= 0)
         {
-            player.GetComponent<PlayerMovement>().playerHealth += 2;
+            player.GetComponent<PlayerMovement>().PlayerHealth += 2;
             timer = cooldownTimer;
         }
 

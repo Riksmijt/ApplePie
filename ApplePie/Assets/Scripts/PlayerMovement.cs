@@ -10,18 +10,14 @@ public class PlayerMovement : MonoBehaviour
     private float saveSpeed;
     [SerializeField] private float rotationSpeed;
 
-    public bool isGrounded;
+    private bool isGrounded;
     private bool canJump;
-    public bool canMove;
+    private bool canMove;
     private bool canAttack = true;
     private bool hasApple;
 
     private Rigidbody selfRigidbody;
-
-    public int index;
-
-    public float playerHealth;
-    public static bool isSpawned;
+    private float playerHealth;
     private GameObject appleObject;
     [SerializeField] private BokserAbilityOne abilityOne;
     [SerializeField] private BokserAbilityTwo abilityTwo;
@@ -33,17 +29,19 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movementInput;
     private Vector2 rotateInput;
 
-    public float speed = 5f;
+    private float speed = 5f;
+
+    public float PlayerHealth { get => playerHealth; set => playerHealth = value; }
+
     void Start()
     {
         playerRenderer = gameObject.GetComponent<MeshRenderer>();
         selfRigidbody = GetComponent<Rigidbody>();
         musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<Music>();
-        playerHealth = 5;
-        saveHealth = playerHealth;
+        PlayerHealth = 5;
+        saveHealth = PlayerHealth;
         saveSpeed = speed;
         timer = 0;
-        isSpawned = false;
         arm.SetActive(false);
     }
     IEnumerator StartAttackCoolDown()
@@ -54,14 +52,14 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (playerHealth <= 0f)
+        if (PlayerHealth <= 0f)
         {
             timer += 1 * Time.deltaTime;
         }
         if (timer >= 3f)
         {
             timer = 0;
-            playerHealth = 5;
+            PlayerHealth = 5;
         }
         float deltaSpeed = (hasApple) ? -3f : 0f;
 
@@ -174,10 +172,10 @@ public class PlayerMovement : MonoBehaviour
     }
     public void TakeDamage(float damage, bool stunHit)
     {
-        playerHealth-= damage;
+        PlayerHealth-= damage;
         musicManager.PlayClip("Damage", 0.8f);
         StartCoroutine(ChangeColorOnDamage());
-        if (playerHealth <= 0) 
+        if (PlayerHealth <= 0) 
         {
             if (appleObject)
             {
@@ -186,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
                 appleObject = null;
             }
             transform.position = new Vector3(2, 10, 2);
-            playerHealth = saveHealth;
+            PlayerHealth = saveHealth;
         }
         if (stunHit)
         {
@@ -202,14 +200,14 @@ public class PlayerMovement : MonoBehaviour
             
             if (!appleObject)
             {
-                if (hits[i].transform.tag == "Apple" && !hits[i].transform.gameObject.GetComponent<Apple>().applePickedUp)
+                if (hits[i].transform.tag == "Apple" && !hits[i].transform.gameObject.GetComponent<Apple>().ApplePickedUp)
                 {
                     musicManager.PlayClip("ApplePickedUp", 0.4f);
                     appleObject = hits[i].transform.gameObject;
                     SetHasApple(true);
                     appleObject.GetComponent<Apple>().SetPlayerMovement(this);
                     appleObject.GetComponent<Rigidbody>().isKinematic = true;
-                    appleObject.GetComponent<Apple>().hasLanded = false;
+                    appleObject.GetComponent<Apple>().HasLanded = false;
                     return;
                 }
             }
