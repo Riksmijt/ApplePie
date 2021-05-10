@@ -7,7 +7,8 @@ public class PlayerMovement : MonoBehaviour
     private int forceConst = 60;
     private float timer;
     private float saveHealth;
-    public float saveSpeed;
+    private float saveSpeed;
+    [SerializeField] private float rotationSpeed;
 
     public bool isGrounded;
     private bool canJump;
@@ -65,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         float deltaSpeed = (hasApple) ? -3f : 0f;
 
         transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * (speed + deltaSpeed) * Time.deltaTime);
-        transform.Rotate(0, rotateInput.x * 3f, 0, Space.World);
+        transform.Rotate(0 * Time.deltaTime, rotateInput.x * rotationSpeed * Time.deltaTime, 0 * Time.deltaTime, Space.World);
         if (appleObject)
         {
             appleObject.transform.position = transform.position + transform.forward * 1f + transform.up * 1f;
